@@ -9,7 +9,7 @@ import modelo.Criptografia;
 public class Vigenere extends Criptografia{
   @Override
   public  String encriptar(String texto){
-    return "";
+    return "ola vigenere";
   }
   
   @Override
@@ -19,7 +19,7 @@ public class Vigenere extends Criptografia{
   
   @Override
   public  boolean verificarTextoEntrada(String texto){
-    return false;
+    return true;
   }
   
   public boolean verificarCodigoEntrada(String codigo){

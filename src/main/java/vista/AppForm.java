@@ -1,7 +1,7 @@
 package vista;
 
-import java.awt.Color;
-
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 /**
  *Form APPForm
  * @authors Diego Araya & Raul Alfaro
@@ -13,6 +13,7 @@ public class AppForm extends javax.swing.JFrame {
      */
     public AppForm() {
         initComponents();
+          
     }
 
     /**
@@ -60,7 +61,7 @@ public class AppForm extends javax.swing.JFrame {
         jLabel3.setText("Algoritmo :");
 
         boxAlgoritmo.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
-        boxAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cesár", "Llave", "Vigenére", "Palabra Inversa", "Mensaje Inverso", "Codificación Binaria", "RSA", "DES", "AES" }));
+        boxAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cesár", "Llave", "Vigenére", "Palabra Inversa", "Mensaje Inverso", "Codificación Binaria", "Código Telefónico", "RSA", "DES", "AES" }));
         boxAlgoritmo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxAlgoritmoActionPerformed(evt);
@@ -70,6 +71,7 @@ public class AppForm extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         jLabel4.setText("Entrada :");
 
+        txtEntrada.setFont(new java.awt.Font("Segoe UI Variable", 0, 12)); // NOI18N
         txtEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEntradaActionPerformed(evt);
@@ -80,6 +82,7 @@ public class AppForm extends javax.swing.JFrame {
         jLabel5.setText("Salida :");
 
         txtSalida.setEditable(false);
+        txtSalida.setFont(new java.awt.Font("Segoe UI Variable", 0, 12)); // NOI18N
         txtSalida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSalidaActionPerformed(evt);
@@ -132,8 +135,8 @@ public class AppForm extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btSALIR)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btLimpiarTxt)
-                                .addGap(241, 241, 241)
+                                .addComponent(btLimpiarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(203, 203, 203)
                                 .addComponent(btEnviarPorCorreo))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,9 +151,9 @@ public class AppForm extends javax.swing.JFrame {
                                         .addComponent(boxAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5)
-                                        .addGap(287, 287, 287)
-                                        .addComponent(btAplicarAlgoritmo)))
-                                .addGap(0, 12, Short.MAX_VALUE)))))
+                                        .addGap(267, 267, 267)
+                                        .addComponent(btAplicarAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(32, 32, 32))
             .addGroup(layout.createSequentialGroup()
                 .addGap(65, 65, 65)

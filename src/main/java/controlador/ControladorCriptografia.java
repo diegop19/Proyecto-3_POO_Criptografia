@@ -32,7 +32,7 @@ public class ControladorCriptografia implements ActionListener{
   public void actionPerformed(ActionEvent e){
     switch(e.getActionCommand()){
         case "Aplicar Algoritmo":
-            //aplicarAlgoritmo();
+            aplicarAlgoritmo();
             break;
         case "Limpiar Texto":
             //Limpiartxt;
@@ -51,7 +51,7 @@ public class ControladorCriptografia implements ActionListener{
   
   public void aplicarAlgoritmo(){
     if(!vista.datosCorrectos()){
-      JOptionPane.showMessageDialog(vista, "Todos lo datos son requeridos");
+      JOptionPane.showMessageDialog(vista, "La entrada no puede ser vacía");
     }
     else{
       String entrada = vista.txtEntrada.getText();
@@ -60,11 +60,14 @@ public class ControladorCriptografia implements ActionListener{
       tipoOperacion = (String) vista.boxTipoOperacion.getSelectedItem();
       criptografia = seleccionarAlgoritmo(algoritmo);
       
-      if(verificarEntrada(entrada)){}
+      if(!verificarEntrada(entrada)){
+        JOptionPane.showMessageDialog(vista, "El texto de entrada no es compatible con el Algoritmo");
+      }
+      else{
+        String salida = getSalida(entrada);
+        mostrarResultado(salida);
       
-      
-     
-      
+      }
     }
   }
  
@@ -76,6 +79,7 @@ public class ControladorCriptografia implements ActionListener{
        case "Palabra Inversa" -> new PalabraInversa();
        case "Mensaje Inverso" -> new MensajeInverso();
        case "Codificación Binaria" -> new Binario();
+       case "Codificacion por Código Telefónico" -> new CodigoTelefonico();
        case "RSA" -> new RSA();
        case "DES" -> new DES();
        case "AES" -> new AES();
@@ -84,15 +88,24 @@ public class ControladorCriptografia implements ActionListener{
   }
   
 public boolean verificarEntrada(String pEntrada){
-  boolean datosCorrectos;
   return switch(tipoOperacion){
-      case "Encriptar" -> datosCorrectos = criptografia.verificarTextoEntrada(pEntrada);
-      case "Desencriptar" -> datosCorrectos = criptografia.verificarCodigoEntrada(pEntrada);
+      case "Encriptar" -> criptografia.verificarTextoEntrada(pEntrada);
+      case "Desencriptar" -> criptografia.verificarCodigoEntrada(pEntrada);
       default -> false;
   };
-
 }
 
+public String getSalida(String pEntrada){
+  return switch(tipoOperacion){
+      case "Encriptar" -> criptografia.encriptar(pEntrada);
+      case "Desencriptar" -> criptografia.desencriptar(pEntrada);
+      default -> "";
+  };
+}
+
+public void mostrarResultado(String pSalida){
+  vista.txtSalida.setText(pSalida);
+}
   
   
 }

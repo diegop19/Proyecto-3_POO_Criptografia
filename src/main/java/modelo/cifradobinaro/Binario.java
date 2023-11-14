@@ -10,6 +10,7 @@ public class Binario extends Criptografia{
   
   @Override
   public  String encriptar(String texto){
+      
     return "";
   }
   

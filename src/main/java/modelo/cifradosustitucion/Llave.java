@@ -22,6 +22,7 @@ public class Llave extends Criptografia{
     return false;
   }
   
+  @Override
   public boolean verificarCodigoEntrada(String codigo){
      return false ;
   }
