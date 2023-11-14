@@ -13,7 +13,7 @@ public class AppForm extends javax.swing.JFrame {
      */
     public AppForm() {
         initComponents();
-          
+      
     }
 
     /**
@@ -234,6 +234,7 @@ public class AppForm extends javax.swing.JFrame {
     public void salir(){
       System.exit(0);
     }
+    
     /**
      * @param args the command line arguments
      */

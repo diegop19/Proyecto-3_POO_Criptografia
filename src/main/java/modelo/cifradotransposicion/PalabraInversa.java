@@ -18,11 +18,12 @@ public class PalabraInversa extends Criptografia{
   
   @Override
   public  boolean verificarTextoEntrada(String texto){
-    return false;
+    return true;
   }
   
+  @Override
   public boolean verificarCodigoEntrada(String codigo){
-     return false ;
+     return true ;
   }
   
 }

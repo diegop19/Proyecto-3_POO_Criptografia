@@ -17,11 +17,7 @@ public class CodigoTelefonico extends Criptografia {
   }
   
   @Override
-  public  boolean verificarTextoEntrada(String texto){
-    return false;
-  }
-  
   public boolean verificarCodigoEntrada(String codigo){
-     return false ;
+     return verificador.verificarNumeros(codigo);
   }
 }

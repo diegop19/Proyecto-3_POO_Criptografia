@@ -17,13 +17,4 @@ public class Vigenere extends Criptografia{
     return "";
   }
   
-  @Override
-  public  boolean verificarTextoEntrada(String texto){
-    return true;
-  }
-  
-  public boolean verificarCodigoEntrada(String codigo){
-     return false ;
-  }
-  
 }

@@ -17,13 +17,4 @@ public class Llave extends Criptografia{
     return "";
   }
   
-  @Override
-  public  boolean verificarTextoEntrada(String texto){
-    return false;
-  }
-  
-  @Override
-  public boolean verificarCodigoEntrada(String codigo){
-     return false ;
-  }
 }

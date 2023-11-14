@@ -10,21 +10,12 @@ public class Cesar extends Criptografia{
 
   @Override
   public  String encriptar(String texto){
-  return "ola estoy funcionando";
+  return "ola cesar encriptao";
   }
   
   @Override
   public  String desencriptar(String texto){
-    return "";
+    return "ola cesar desencriptao";
   }
-  
-  @Override
-  public  boolean verificarTextoEntrada(String texto){
-    return true;
-  }
-  
-  public boolean verificarCodigoEntrada(String codigo){
-     return false ;
-  }
-  
+ 
 }

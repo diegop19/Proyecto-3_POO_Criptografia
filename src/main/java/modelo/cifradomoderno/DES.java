@@ -18,10 +18,11 @@ public class DES extends Criptografia{
   
   @Override
   public  boolean verificarTextoEntrada(String texto){
-    return false;
+    return verificador.verificarASCII(texto);
   }
   
+  @Override
   public boolean verificarCodigoEntrada(String codigo){
-     return false ;
+     return verificarTextoEntrada(codigo);
   }
 }

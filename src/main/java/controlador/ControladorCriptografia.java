@@ -14,11 +14,16 @@ import modelo.cifradotransposicion.*;
  * Class ControloadorCriptografia
  * @authors Diego Araya & Raul Alfaro
  */
+
 public class ControladorCriptografia implements ActionListener{
   public AppForm vista;
   public Criptografia criptografia;
   public String tipoOperacion;
   
+  /**
+   * Connstructor de el ControladorCriptografia
+   * @param pVista 
+   */
   public ControladorCriptografia(AppForm pVista){
     this.vista = pVista;
     
@@ -61,7 +66,7 @@ public class ControladorCriptografia implements ActionListener{
       criptografia = seleccionarAlgoritmo(algoritmo);
       
       if(!verificarEntrada(entrada)){
-        JOptionPane.showMessageDialog(vista, "El texto de entrada no es compatible con el Algoritmo");
+        JOptionPane.showMessageDialog(vista, "El texto de entrada no es compatible con la operacion o el Algoritmo");
       }
       else{
         String salida = getSalida(entrada);

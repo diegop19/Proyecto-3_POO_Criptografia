@@ -19,10 +19,10 @@ public class RSA extends Criptografia{
   
   @Override
   public  boolean verificarTextoEntrada(String texto){
-    return false;
+    return verificador.verificarASCII(texto);
   } 
   
   public boolean verificarCodigoEntrada(String codigo){
-     return false ;
+     return verificarTextoEntrada(codigo);
   }
 }
