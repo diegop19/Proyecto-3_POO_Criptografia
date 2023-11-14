@@ -19,8 +19,12 @@ public class Cesar extends Criptografia{
   }
   
   @Override
-  public  boolean verificarEntrada(String texto){
+  public  boolean verificarTextoEntrada(String texto){
     return false;
+  }
+  
+  public boolean verificarCodigoEntrada(String codigo){
+     return false ;
   }
   
 }

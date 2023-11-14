@@ -17,6 +17,7 @@ import modelo.cifradotransposicion.*;
 public class ControladorCriptografia implements ActionListener{
   public AppForm vista;
   public Criptografia criptografia;
+  public String tipoOperacion;
   
   public ControladorCriptografia(AppForm pVista){
     this.vista = pVista;
@@ -54,20 +55,21 @@ public class ControladorCriptografia implements ActionListener{
     }
     else{
       String entrada = vista.txtEntrada.getText();
-      String tipoOperacion = (String) vista.boxTipoOperacion.getSelectedItem();
       String algoritmo = (String) vista.boxAlgoritmo.getSelectedItem();
       
-      Criptografia Ncriptografia = seleccionarAlgoritmo(tipoOperacion);
-      boolean verificar = Ncriptografia.verificarEntrada(entrada);
-      // Aca verifica si los valores ingresados corresponden al tipo de encriptacion 
-      // PENDIENTE:  es nesesario validar si lo que se ingresa es para codificar o decode,
-      // pq las validaciones deberian ser diferentes
+      tipoOperacion = (String) vista.boxTipoOperacion.getSelectedItem();
+      criptografia = seleccionarAlgoritmo(algoritmo);
+      
+      if(verificarEntrada(entrada)){}
+      
+      
+     
       
     }
   }
  
-  public Criptografia seleccionarAlgoritmo(String pTipoOperacion){
-    return switch (pTipoOperacion){
+  public Criptografia seleccionarAlgoritmo(String pAlgoritmo){
+    return switch (pAlgoritmo){
        case "Cesár" -> new Cesar();
        case "Llave" -> new Llave();
        case "Vigenére" -> new Vigenere();
@@ -80,6 +82,16 @@ public class ControladorCriptografia implements ActionListener{
        default -> null;
     };
   }
+  
+public boolean verificarEntrada(String pEntrada){
+  boolean datosCorrectos;
+  return switch(tipoOperacion){
+      case "Encriptar" -> datosCorrectos = criptografia.verificarTextoEntrada(pEntrada);
+      case "Desencriptar" -> datosCorrectos = criptografia.verificarCodigoEntrada(pEntrada);
+      default -> false;
+  };
+
+}
 
   
   
