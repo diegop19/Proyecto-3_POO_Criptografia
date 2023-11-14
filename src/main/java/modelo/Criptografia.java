@@ -14,4 +14,5 @@ public abstract class Criptografia {
   public abstract String desencriptar(String texto);
   public abstract boolean verificarEntrada(String texto);
   
+  
 }

@@ -33,7 +33,7 @@ public class AppForm extends javax.swing.JFrame {
         txtEntrada = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtSalida = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btAplicarAlgoritmo = new javax.swing.JButton();
         btEnviarPorCorreo = new javax.swing.JButton();
         btSALIR = new javax.swing.JButton();
         btLimpiarTxt = new javax.swing.JButton();
@@ -60,7 +60,7 @@ public class AppForm extends javax.swing.JFrame {
         jLabel3.setText("Algoritmo :");
 
         boxAlgoritmo.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
-        boxAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Encriptar", "Desencriptar", " " }));
+        boxAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cesár", "Llave", "Vigenére", "Palabra Inversa", "Mensaje Inverso", "Codificación Binaria", "RSA", "DES", "AES" }));
         boxAlgoritmo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxAlgoritmoActionPerformed(evt);
@@ -79,15 +79,16 @@ public class AppForm extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         jLabel5.setText("Salida :");
 
+        txtSalida.setEditable(false);
         txtSalida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSalidaActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jButton1.setText("Aplicar Algoritmo");
+        btAplicarAlgoritmo.setBackground(new java.awt.Color(204, 204, 204));
+        btAplicarAlgoritmo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        btAplicarAlgoritmo.setText("Aplicar Algoritmo");
 
         btEnviarPorCorreo.setBackground(new java.awt.Color(204, 204, 204));
         btEnviarPorCorreo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -148,8 +149,8 @@ public class AppForm extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addGap(287, 287, 287)
-                                        .addComponent(jButton1)))
-                                .addGap(0, 54, Short.MAX_VALUE)))))
+                                        .addComponent(btAplicarAlgoritmo)))
+                                .addGap(0, 12, Short.MAX_VALUE)))))
                 .addGap(32, 32, 32))
             .addGroup(layout.createSequentialGroup()
                 .addGap(65, 65, 65)
@@ -187,7 +188,7 @@ public class AppForm extends javax.swing.JFrame {
                         .addGap(35, 35, 35))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(btAplicarAlgoritmo)
                         .addGap(229, 229, 229))))
         );
 
@@ -221,7 +222,15 @@ public class AppForm extends javax.swing.JFrame {
     private void btLimpiarTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btLimpiarTxtActionPerformed
-
+    
+    public boolean datosCorrectos(){
+      String entrada = txtEntrada.getText();
+      return !entrada.isEmpty();
+    }
+    
+    public void salir(){
+      System.exit(0);
+    }
     /**
      * @param args the command line arguments
      */
@@ -260,10 +269,10 @@ public class AppForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JComboBox<String> boxAlgoritmo;
     public javax.swing.JComboBox<String> boxTipoOperacion;
+    public javax.swing.JButton btAplicarAlgoritmo;
     public javax.swing.JButton btEnviarPorCorreo;
     public javax.swing.JButton btLimpiarTxt;
     public javax.swing.JButton btSALIR;
-    public javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
