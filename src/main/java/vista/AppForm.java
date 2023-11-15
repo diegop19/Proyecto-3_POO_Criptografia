@@ -20,8 +20,15 @@ public class AppForm extends javax.swing.JFrame {
         txtEntrada.setLineWrap(true);
         txtEntrada.setWrapStyleWord(true);
         
-        DefaultCaret caret = (DefaultCaret)txtEntrada.getCaret();
-        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        DefaultCaret caret1 = (DefaultCaret)txtEntrada.getCaret();
+        caret1.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        
+        txtSalida.setLineWrap(true);
+        txtSalida.setWrapStyleWord(true);
+        
+        DefaultCaret caret2 = (DefaultCaret)txtSalida.getCaret();
+        caret2.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        
         
     }
 
