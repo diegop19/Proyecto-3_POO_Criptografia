@@ -1,8 +1,9 @@
 package controlador;
 import modelo.*;
-import vista.AppForm;
+import vista.*;
 import javax.swing.*;
 import java.awt.event.*;
+
 import modelo.cifradobinaro.*;
 import modelo.cifradomoderno.*;
 import modelo.cifradosustitucion.*;
@@ -34,23 +35,14 @@ public class ControladorCriptografia implements ActionListener{
 
   }
   
+  @Override
   public void actionPerformed(ActionEvent e){
     switch(e.getActionCommand()){
-        case "Aplicar Algoritmo":
-            aplicarAlgoritmo();
-            break;
-        case "Limpiar Texto":
-            limpiarTxt();
-            break;
-        case "Enviar por Correo":
-            //enviarcorreo;
-            break;
-        case "SALIR":
-            vista.salir();
-            break;
-        default:
-            break;
-    
+        case "Aplicar Algoritmo" -> aplicarAlgoritmo();
+        case "Limpiar Texto" -> limpiarTxt();
+        case "Enviar por Correo" -> crearControladorCorreo();
+        case "SALIR" -> vista.salir();
+        default -> {}
     }
   }
   
@@ -119,8 +111,16 @@ public void limpiarTxt(){
   vista.txtSalida.setText("");
 }
 
-public void enviarCorreo(){
-  
+public void crearControladorCorreo(){
+   if(vista.txtSalida.getText().isEmpty()){
+     JOptionPane.showMessageDialog(vista, "Para enviar un correo es nesesaria una salida");
+   }
+   else{
+      CorreoForm form = new CorreoForm();
+      ControladorCorreo controlador = new ControladorCorreo(form,vista.txtSalida.getText());
+      controlador.vista.setVisible(true);
+      //controlador.vista.setLocationRelativeTo(null);
+   }
 }
   
   
