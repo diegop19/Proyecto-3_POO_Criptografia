@@ -40,7 +40,7 @@ public class ControladorCriptografia implements ActionListener{
             aplicarAlgoritmo();
             break;
         case "Limpiar Texto":
-            //Limpiartxt;
+            limpiarTxt();
             break;
         case "Enviar por Correo":
             //enviarcorreo;
@@ -59,7 +59,9 @@ public class ControladorCriptografia implements ActionListener{
       JOptionPane.showMessageDialog(vista, "La entrada no puede ser vacía");
     }
     else{
-      String entrada = vista.txtEntrada.getText();
+      String entrada = vista.txtEntrada.getText().replace("\n", "");
+      
+      System.out.println(entrada);
       String algoritmo = (String) vista.boxAlgoritmo.getSelectedItem();
       
       tipoOperacion = (String) vista.boxTipoOperacion.getSelectedItem();
@@ -110,6 +112,15 @@ public String getSalida(String pEntrada){
 
 public void mostrarResultado(String pSalida){
   vista.txtSalida.setText(pSalida);
+}
+
+public void limpiarTxt(){
+  vista.txtEntrada.setText("");
+  vista.txtSalida.setText("");
+}
+
+public void enviarCorreo(){
+  
 }
   
   

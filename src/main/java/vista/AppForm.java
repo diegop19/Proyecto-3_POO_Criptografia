@@ -1,7 +1,10 @@
 package vista;
 
+import java.awt.BorderLayout;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.DefaultCaret;
 /**
  *Form APPForm
  * @authors Diego Araya & Raul Alfaro
@@ -13,7 +16,13 @@ public class AppForm extends javax.swing.JFrame {
      */
     public AppForm() {
         initComponents();
-      
+        
+        txtEntrada.setLineWrap(true);
+        txtEntrada.setWrapStyleWord(true);
+        
+        DefaultCaret caret = (DefaultCaret)txtEntrada.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        
     }
 
     /**
@@ -31,13 +40,15 @@ public class AppForm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         boxAlgoritmo = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        txtEntrada = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtSalida = new javax.swing.JTextField();
         btAplicarAlgoritmo = new javax.swing.JButton();
         btEnviarPorCorreo = new javax.swing.JButton();
         btSALIR = new javax.swing.JButton();
         btLimpiarTxt = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtSalida = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtEntrada = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 255));
@@ -71,23 +82,8 @@ public class AppForm extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         jLabel4.setText("Entrada :");
 
-        txtEntrada.setFont(new java.awt.Font("Segoe UI Variable", 0, 12)); // NOI18N
-        txtEntrada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEntradaActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
         jLabel5.setText("Salida :");
-
-        txtSalida.setEditable(false);
-        txtSalida.setFont(new java.awt.Font("Segoe UI Variable", 0, 12)); // NOI18N
-        txtSalida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSalidaActionPerformed(evt);
-            }
-        });
 
         btAplicarAlgoritmo.setBackground(new java.awt.Color(204, 204, 204));
         btAplicarAlgoritmo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
@@ -120,6 +116,15 @@ public class AppForm extends javax.swing.JFrame {
             }
         });
 
+        txtSalida.setEditable(false);
+        txtSalida.setColumns(20);
+        txtSalida.setRows(5);
+        jScrollPane1.setViewportView(txtSalida);
+
+        txtEntrada.setColumns(20);
+        txtEntrada.setRows(5);
+        jScrollPane2.setViewportView(txtEntrada);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,16 +156,19 @@ public class AppForm extends javax.swing.JFrame {
                                         .addComponent(boxAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5)
-                                        .addGap(267, 267, 267)
+                                        .addGap(284, 284, 284)
                                         .addComponent(btAplicarAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(32, 32, 32))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(74, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(45, 45, 45)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,24 +183,23 @@ public class AppForm extends javax.swing.JFrame {
                     .addComponent(boxAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btSALIR)
-                            .addComponent(btEnviarPorCorreo)
-                            .addComponent(btLimpiarTxt))
-                        .addGap(35, 35, 35))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btAplicarAlgoritmo)
-                        .addGap(229, 229, 229))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(btAplicarAlgoritmo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btSALIR)
+                    .addComponent(btEnviarPorCorreo)
+                    .addComponent(btLimpiarTxt))
+                .addGap(35, 35, 35))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(126, 126, 126)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(266, Short.MAX_VALUE)))
         );
 
         pack();
@@ -205,14 +212,6 @@ public class AppForm extends javax.swing.JFrame {
     private void boxAlgoritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAlgoritmoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boxAlgoritmoActionPerformed
-
-    private void txtEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEntradaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEntradaActionPerformed
-
-    private void txtSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSalidaActionPerformed
 
     private void btEnviarPorCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEnviarPorCorreoActionPerformed
         // TODO add your handling code here:
@@ -282,7 +281,9 @@ public class AppForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    public javax.swing.JTextField txtEntrada;
-    public javax.swing.JTextField txtSalida;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JTextArea txtEntrada;
+    public javax.swing.JTextArea txtSalida;
     // End of variables declaration//GEN-END:variables
 }
