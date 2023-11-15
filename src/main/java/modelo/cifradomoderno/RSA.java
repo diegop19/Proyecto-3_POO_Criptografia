@@ -22,6 +22,7 @@ public class RSA extends Criptografia{
     return verificador.verificarASCII(texto);
   } 
   
+  @Override
   public boolean verificarCodigoEntrada(String codigo){
      return verificarTextoEntrada(codigo);
   }

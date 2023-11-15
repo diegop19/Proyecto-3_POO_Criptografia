@@ -45,5 +45,4 @@ public class Verificador {
     return Pattern.matches(patron, input);
   }
   
-  
 }
