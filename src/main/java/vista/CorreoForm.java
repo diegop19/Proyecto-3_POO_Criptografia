@@ -78,7 +78,11 @@ public class CorreoForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public boolean datosCorrectos(){
+      String correo = txtCorreo.getText();
+      return !correo.isEmpty();
+    }
     /**
      * @param args the command line arguments
      */

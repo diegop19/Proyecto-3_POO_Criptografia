@@ -32,10 +32,16 @@ public class ControladorCorreo implements ActionListener{
   }
   
   public void enviarCorreo(){
-    Correo correo = new Correo();
-    String destinatario = vista.txtCorreo.getText();
-    correo.enviarCorreo(destinatario, mensaje);
+    if(!vista.datosCorrectos()){
+      JOptionPane.showMessageDialog(vista, "Ingrese un Correo Electronico");
+    }
+    else{
+      Correo correo = new Correo();
+      String destinatario = vista.txtCorreo.getText();
+      correo.enviarCorreo(destinatario, mensaje);
+    }
   }
+  
   
   
 }
