@@ -10,32 +10,43 @@ public class Cesar extends Criptografia{
 
   @Override
   public  String encriptar(String texto){
+      texto = texto.toUpperCase();
       int shift = 3;
-      StringBuilder result = new StringBuilder();
+      StringBuilder mensajeCifrado = new StringBuilder();
       
       for(int i = 0; i < texto.length(); i++) {
-        char ch = texto.charAt(i);
-        
-        char encryptedChar = (char) ((ch - 'A' + shift) % 26 + 'A');
-        result.append(encryptedChar);
+          char letra = texto.charAt(i);
+          
+          if (Character.isLetter(letra)) {
+             char encryptedChar = (char) ((letra - 'A' + shift) % 26 + 'A');
+             mensajeCifrado.append(encryptedChar);
+             
+          } else {
+            mensajeCifrado.append(letra);
+          }
       }
       
-      return result.toString();
+      return mensajeCifrado.toString();
   }
   
   @Override
   public  String desencriptar(String texto){
+      texto = texto.toUpperCase();
       int shift = 3;
-      StringBuilder result = new StringBuilder();
+      StringBuilder mensajeDescifrado = new StringBuilder();
       
       for(int i = 0; i < texto.length(); i++) {
-        char ch = texto.charAt(i);
-        
-        char desencryptedChar = (char) ((ch - 'A' - shift + 26) % 26 + 'A');
-        result.append(desencryptedChar);
+          char letra = texto.charAt(i);
+          
+          if (Character.isLetter(letra)) {
+            char desencryptedChar = (char) ((letra - 'A' - shift + 26) % 26 + 'A');
+            mensajeDescifrado.append(desencryptedChar);
+            
+          } else {
+            mensajeDescifrado.append(letra);
+          }
       }
-      
-      return result.toString();
+      return  mensajeDescifrado.toString();
   }
  
 }
