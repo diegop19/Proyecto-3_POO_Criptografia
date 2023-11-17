@@ -33,22 +33,12 @@ public class PalabraInversa extends Criptografia{
   
   @Override
   public  boolean verificarTextoEntrada(String texto){
-    boolean flag;
-    String regex = "^[a-zA-Z\\s]+$";
-    
-    flag = texto.matches(regex);
-    
-    return flag;
+    return true;
   }
   
   @Override
   public boolean verificarCodigoEntrada(String codigo){
-   boolean flag;
-    String regex = "^[a-zA-Z\\s]+$";
-    
-    flag = codigo.matches(regex);
-    
-    return flag;
+   return true;
   }
   
   public String invertirPalabra(String palabra) {
