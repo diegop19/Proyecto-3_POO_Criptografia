@@ -119,7 +119,7 @@ public void crearControladorCorreo(){
       CorreoForm form = new CorreoForm();
       ControladorCorreo controlador = new ControladorCorreo(form,vista.txtSalida.getText());
       controlador.vista.setVisible(true);
-      //controlador.vista.setLocationRelativeTo(null);
+      controlador.vista.setLocationRelativeTo(null);
    }
 }
   

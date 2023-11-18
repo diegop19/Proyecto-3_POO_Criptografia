@@ -3,6 +3,9 @@ import vista.CorreoForm;
 import util.Correo;
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author daray
@@ -26,19 +29,32 @@ public class ControladorCorreo implements ActionListener{
   @Override
   public void actionPerformed(ActionEvent e) {
     switch(e.getActionCommand()){
-      case "Enviar" -> enviarCorreo();
+      case "Enviar" -> {
+            try {
+                enviarCorreo();
+            } catch (IOException ex) {
+                Logger.getLogger(ControladorCorreo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
       default -> {}
     }
   }
   
-  public void enviarCorreo(){
+  public void enviarCorreo() throws IOException{
     if(!vista.datosCorrectos()){
       JOptionPane.showMessageDialog(vista, "Ingrese un Correo Electronico");
     }
     else{
       Correo correo = new Correo();
       String destinatario = vista.txtCorreo.getText();
-      correo.enviarCorreo(destinatario, mensaje);
+      boolean enviado = correo.enviarCorreo(destinatario, mensaje);
+      if(!enviado){
+              JOptionPane.showMessageDialog(vista, "Ingrese un Correo Electronico");
+      }
+      else{
+        JOptionPane.showMessageDialog(vista, "Correo Enviado correctamente");
+      }
     }
   }
   
