@@ -54,7 +54,7 @@ public class Correo {
         propiedades.put("mail.smtp.starttls.enable", "true");
 
         Session sesion = abrirSesion();
-
+        
         try {
           // Crea el objeto mensaje y asigna a quien se le va al destinario y remitente
           Message message = new MimeMessage(sesion);
@@ -78,6 +78,12 @@ public class Correo {
     
   }
   
+  /**
+   * Metodo verificarCorreo
+   * @param email
+   * @return true si el correo es valid, false si no.
+   * @throws IOException 
+   */
   private boolean verificarCorreo(String email) throws IOException{
     String uri = "https://emailvalidation.abstractapi.com/v1/?api_key=abdc67fa23e24938974cdd3a107c5d42&email=" + email;
     try{
@@ -85,13 +91,16 @@ public class Correo {
       JSONObject jsonContent = new JSONObject(content.toString());
       
       String deliverability = jsonContent.getString("deliverability");
-      boolean smtpValido = jsonContent.getBoolean("is_smtp_valid");
-      boolean format = jsonContent.getBoolean("is_valid_format");
       
-      //if("UNDELIVERABLE".equals(deliverability)|| !smtValido, )
+      JSONObject jsonSmtpValid = jsonContent.getJSONObject("is_smtp_valid");
+      boolean smtpValid = jsonSmtpValid.getBoolean("value");
       
+      JSONObject jsonFormat = jsonContent.getJSONObject("is_valid_format");
+      boolean format = jsonFormat.getBoolean("value");
       
-      System.out.println(content);
+      if("DELIVERABLE".equals(deliverability) && smtpValid && format){
+        return true;
+      }     
     }
     catch(IOException error){
     }
