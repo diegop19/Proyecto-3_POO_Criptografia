@@ -12,8 +12,8 @@ import org.json.*;
  * @authors Diego Araya & Raul Alfaro
  */
 public class Correo {
-  private final String USUARIO = "encrpytapp@gmail.com";
-  private final String CLAVE = "tdlm wvli jmko rkjx";
+  private final String USUARIO = "encrpytapp@gmail.com";  //Correo electronico de la app
+  private final String CLAVE = "tdlm wvli jmko rkjx";     // token de acceso 
   private Properties propiedades;
   
   public Correo(){
@@ -40,11 +40,11 @@ public class Correo {
    * Método enviarCorreo()
    * @param destinario : direccion del Correo
      * @param mensaje
-     * @return 
+     * @return true si se envio correctamente, false si no 
      * @throws java.io.IOException
    */
   public boolean enviarCorreo(String destinario,String mensaje) throws IOException {
-    if(!verificarCorreo(destinario)){
+    if(!verificarCorreo(destinario)){  // Verifica que el correo sea valido. 
       return false;
     }
     else{
@@ -64,7 +64,7 @@ public class Correo {
             InternetAddress.parse(destinario));
 
           message.setSubject("Mensaje Encriptado");
-          message.setText(mensaje);
+          message.setText(mensaje);  
 
           // Envia el mensaje
           Transport.send(message);
@@ -79,9 +79,10 @@ public class Correo {
   }
   
   /**
-   * Metodo verificarCorreo
+   * Metodo verificarCorreo()
+   * Se Utiliza la API "abstract" para la verificacion de los correos electronicos. 
    * @param email
-   * @return true si el correo es valid, false si no.
+   * @return true si el correo es valido, false si no.
    * @throws IOException 
    */
   private boolean verificarCorreo(String email) throws IOException{
@@ -98,7 +99,7 @@ public class Correo {
       JSONObject jsonFormat = jsonContent.getJSONObject("is_valid_format");
       boolean format = jsonFormat.getBoolean("value");
       
-      if("DELIVERABLE".equals(deliverability) && smtpValid && format){
+      if("DELIVERABLE".equals(deliverability) && smtpValid && format){  // Verifica el formato, el protocolo smtp y si es enviable 
         return true;
       }     
     }

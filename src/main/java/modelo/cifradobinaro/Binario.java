@@ -23,9 +23,4 @@ public class Binario extends Criptografia{
     return verificador.verificarBinario(codigo);
   }
   
-  public String getAlgoritmo(){
-    return "Binario";
-  }
-  
-  
 }
