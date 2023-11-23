@@ -7,7 +7,13 @@ import modelo.Criptografia;
  * @authors Diego Araya & Raul Alfaro
  */
 public class Vigenere extends Criptografia{
-    
+  
+  /***
+   * Método encriptar
+   * Se encarga de encriptar el mensaje que recibe mediante la técnica Vigenere
+   * @param texto
+   * @return String: Devuelve el mensaje encriptado como una cadena string
+   */
   @Override
   public  String encriptar(String texto){
       texto = texto.toUpperCase();
@@ -58,6 +64,12 @@ public class Vigenere extends Criptografia{
       return mensajeCifrado.toString();
   }
   
+  /***
+   * Método desencriptar
+   * Se encarga de el desencriptar el mensaje que recibe mediante la técnica Vigenere
+   * @param texto
+   * @return String: Devuelve el mensaje desencriptado como una cadena string
+   */
   @Override
   public  String desencriptar(String texto){
       texto = texto.toUpperCase();

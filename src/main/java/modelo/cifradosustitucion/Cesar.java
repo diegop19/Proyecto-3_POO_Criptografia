@@ -7,7 +7,13 @@ import modelo.Criptografia;
  * @authors Diego Araya & Raul Alfaro
  */
 public class Cesar extends Criptografia{
-
+      
+  /***
+   * Método encriptar
+   * Se encarga de encriptar el mensaje que recibe mediante la técnica césar
+   * @param texto
+   * @return String: Devuelve el mensaje encriptado como una cadena string
+   */
   @Override
   public  String encriptar(String texto){
       texto = texto.toUpperCase();
@@ -29,6 +35,12 @@ public class Cesar extends Criptografia{
       return mensajeCifrado.toString();
   }
   
+  /***
+   * Método desencriptar
+   * Se encarga de desencriprtar el mensaje que recibe mediante la técnica césar
+   * @param texto
+   * @return String: Devuelve el mensaje desencriptado como una cadena string
+   */
   @Override
   public  String desencriptar(String texto){
       texto = texto.toUpperCase();

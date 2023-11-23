@@ -7,7 +7,13 @@ import java.util.HashMap;
  * @authors Diego Araya & Raul Alfaro
  */
 public class CodigoTelefonico extends Criptografia {
-    
+  
+  /***
+   * Método encriptar
+   * Se encarga de encriptar el mensaje que recibe mediante la técnica telefónica
+   * @param texto
+   * @return String: Devuelve el mensaje encriptado como una cadena string
+   */
   @Override
   public  String encriptar(String texto){
     texto = texto.toUpperCase();
@@ -24,9 +30,16 @@ public class CodigoTelefonico extends Criptografia {
     return mensajeCifrado.toString();
   }
   
+  /***
+   * Método encriptar
+   * Se encarga de desencriptar el mensaje que recibe mediante la técnica Vigenere
+   * @param texto
+   * @return String: Devuelve el mensaje desencriptado como una cadena string
+   */
   @Override
   public  String desencriptar(String texto){
     StringBuilder mensajeDescifrado = new StringBuilder();
+    texto = texto.toUpperCase();
     String[] codigos = texto.split(" ");
     
     for(String codigo: codigos) {
@@ -50,6 +63,11 @@ public class CodigoTelefonico extends Criptografia {
      return verificador.verificarNumeros(codigo);
   }
   
+  /***
+   * Método HashMap
+   * Instancia cada palabra del Alfabeto con su respectivo código telefónico
+   * @return String: Devuelve la llave o el codigo según como se acceda
+   */
   private static final HashMap<Character, String> teclado = new HashMap<>();
 
     static {
