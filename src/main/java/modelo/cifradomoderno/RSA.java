@@ -9,6 +9,8 @@ import java.util.Random;
  */
 
 public class RSA extends Criptografia{
+  private int clave1;
+  private int clave2;
   
   /***
    * Métod encriptar

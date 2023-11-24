@@ -6,6 +6,9 @@ import modelo.Criptografia;
  * @authors Diego Araya & Raul Alfaro
  */
 public class AES extends Criptografia{
+    
+  public AES(){}  
+  
   @Override
   public  String encriptar(String texto){
     return "";

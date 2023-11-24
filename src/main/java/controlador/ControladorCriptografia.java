@@ -65,7 +65,19 @@ public class ControladorCriptografia implements ActionListener{
       String algoritmo = (String) vista.boxAlgoritmo.getSelectedItem();  // algoritmo a utilizar
       
       tipoOperacion = (String) vista.boxTipoOperacion.getSelectedItem();  // tipo de operacion
-      criptografia = seleccionarAlgoritmo(algoritmo);         // se inicializa criptografia con la clase correspondiente al algoritmo
+      //criptografia = seleccionarAlgoritmo(algoritmo);
+      
+      
+      if(criptografia != null){
+        if (!criptografia.equals(seleccionarAlgoritmo(algoritmo))){
+         criptografia = seleccionarAlgoritmo(algoritmo);// se inicializa criptografia con la clase correspondiente al algoritmo
+         System.out.println("nuevo creado");
+        } 
+      }
+      else{
+        criptografia = seleccionarAlgoritmo(algoritmo);
+        System.out.println("primero creado");
+      }
       
       if(!verificarEntrada(entrada)){
         JOptionPane.showMessageDialog(vista, "El texto de entrada no es compatible con la operacion o el Algoritmo");

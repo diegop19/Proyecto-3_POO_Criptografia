@@ -6,6 +6,9 @@ import modelo.Criptografia;
  * @authors Diego Araya & Raul Alfaro
  */
 public class DES extends Criptografia{
+    
+  public DES(){}
+  
   @Override
   public  String encriptar(String texto){
     return "";
