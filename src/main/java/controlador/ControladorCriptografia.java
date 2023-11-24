@@ -69,21 +69,13 @@ public class ControladorCriptografia implements ActionListener{
       if(criptografia != null){
         if (!criptografia.equals(seleccionarAlgoritmo(algoritmo))){
          criptografia = seleccionarAlgoritmo(algoritmo);// se inicializa criptografia con la clase correspondiente al algoritmo
-         System.out.println("nuevo creado");
         } 
       }
       else{
         criptografia = seleccionarAlgoritmo(algoritmo);
-        System.out.println("primero creado");
       }
       
-      if("RSA".equals(criptografia.getClass().getSimpleName()) & "Desencriptar".equals(tipoOperacion) ){
-        System.out.println("rsa desencriptar");
-        RSA rsa = (RSA)criptografia;
-        if(rsa.getClave1() == null || rsa.getClave2() == null){
-            JOptionPane.showMessageDialog(vista, "Para utilizar el desencriptado RSA es nesesario haber encriptado, esto por las claves privadas");
-        } 
-      }
+      verificarRSA();
       
       if(!verificarEntrada(entrada)){
         JOptionPane.showMessageDialog(vista, "El texto de entrada no es compatible con la operacion o el Algoritmo");
@@ -91,7 +83,6 @@ public class ControladorCriptografia implements ActionListener{
       else{
         String salida = getSalida(entrada);
         mostrarResultado(salida);
-      
       }
     }
   }
@@ -145,6 +136,17 @@ public class ControladorCriptografia implements ActionListener{
       default -> "";
     };
   }
+  
+  public void verificarRSA(){
+    if("RSA".equals(criptografia.getClass().getSimpleName()) & "Desencriptar".equals(tipoOperacion) ){
+        System.out.println("rsa desencriptar");
+        RSA rsa = (RSA)criptografia;
+        if(rsa.getClave1() == null || rsa.getClave2() == null){
+            JOptionPane.showMessageDialog(vista, "Para utilizar el desencriptado RSA es nesesario haber encriptado, esto por las claves privadas");
+        } 
+    }
+  }
+  
   
   /**
    * Metodo mostraResultado()
