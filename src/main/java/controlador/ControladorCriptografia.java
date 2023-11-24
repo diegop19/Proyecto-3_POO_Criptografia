@@ -65,8 +65,6 @@ public class ControladorCriptografia implements ActionListener{
       String algoritmo = (String) vista.boxAlgoritmo.getSelectedItem();  // algoritmo a utilizar
       
       tipoOperacion = (String) vista.boxTipoOperacion.getSelectedItem();  // tipo de operacion
-      //criptografia = seleccionarAlgoritmo(algoritmo);
-      
       
       if(criptografia != null){
         if (!criptografia.equals(seleccionarAlgoritmo(algoritmo))){
@@ -77,6 +75,14 @@ public class ControladorCriptografia implements ActionListener{
       else{
         criptografia = seleccionarAlgoritmo(algoritmo);
         System.out.println("primero creado");
+      }
+      
+      if("RSA".equals(criptografia.getClass().getSimpleName()) & "Desencriptar".equals(tipoOperacion) ){
+        System.out.println("rsa desencriptar");
+        RSA rsa = (RSA)criptografia;
+        if(rsa.getClave1() == null || rsa.getClave2() == null){
+            JOptionPane.showMessageDialog(vista, "Para utilizar el desencriptado RSA es nesesario haber encriptado, esto por las claves privadas");
+        } 
       }
       
       if(!verificarEntrada(entrada)){

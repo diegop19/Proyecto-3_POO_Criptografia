@@ -9,8 +9,8 @@ import java.util.Random;
  */
 
 public class RSA extends Criptografia{
-  private int clave1;
-  private int clave2;
+  private Integer clave1;
+  private Integer clave2;
   
   /***
    * Métod encriptar
@@ -154,5 +154,13 @@ public class RSA extends Criptografia{
    */
   public static boolean esDivisiblePorEuler(int numero, double a, int b) {
       return ((numero * a) - 1) % b == 0;
+  }
+  
+  public Integer getClave1(){
+    return clave1;
+  }
+  
+  public Integer getClave2(){
+    return clave2;
   }
 }
