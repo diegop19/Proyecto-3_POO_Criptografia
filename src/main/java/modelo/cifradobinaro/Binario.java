@@ -27,8 +27,14 @@ public class Binario extends Criptografia{
     
     for(int i = 0; i < texto.length(); i++) {
         char letra = texto.charAt(i);
+        
+        if (Character.isLetter(letra)) {
         String binario = mapaBinario.get(Character.toUpperCase(letra));
         mensajeCifrado.append(binario).append(" ");
+        
+        } else {
+          mensajeCifrado.append(" * ");
+        }
     }
     
     return mensajeCifrado.toString();
@@ -46,13 +52,13 @@ public class Binario extends Criptografia{
     }
     
     for(String binario: codigo) {
-        if (!binario.isEmpty()) {
+        if (mapaBinario.containsKey(binario)) {
           char letra = mapaBinario.get(binario);
           mensajeDescifrado.append(letra);
           
         } else {
-          mensajeDescifrado.append(" ");
-        }
+           mensajeDescifrado.append(" ");
+}
     }
     
     return mensajeDescifrado.toString();

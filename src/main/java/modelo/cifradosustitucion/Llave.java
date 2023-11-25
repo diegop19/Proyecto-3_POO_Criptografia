@@ -31,14 +31,21 @@ public class Llave extends Criptografia{
         char claveLetra = clave.charAt(j);
         
         if (Character.isLetter(letra)) {
-            int numLetra = (char) (letra - 'A' + 1) % 26 + 'A';
-            int numClaveLetra = (char) (claveLetra - 'A' + 1) % 26 + 'A';
+            int numLetra = (char) (letra - 'A' + 1);
+            int numClaveLetra = (char) (claveLetra - 'A' + 1);
             
             int codigo = numLetra + numClaveLetra; 
-            
+            System.out.println(codigo);
             if (codigo > 26) {
               codigo = codigo - 26;
+              
             }
+            
+            if (codigo % 26 == 0) {
+              mensajeCifrado.append("Z");
+              continue;
+            }
+            
             char letraCifrada = (char) (codigo % 26 + 'A' - 1); 
             
             mensajeCifrado.append(letraCifrada);

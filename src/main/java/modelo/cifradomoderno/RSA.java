@@ -9,8 +9,8 @@ import java.util.Random;
  */
 
 public class RSA extends Criptografia{
-  private Integer clave1;
-  private Integer clave2;
+  private Integer claveN;
+  private Integer claveD;
   
   /***
    * Métod encriptar
@@ -22,25 +22,45 @@ public class RSA extends Criptografia{
   public  String encriptar(String texto){
     StringBuilder mensajeCifrado = new StringBuilder();
     texto = texto.toUpperCase();
-    int p = generarNumeroPrimo();
-    int q = generarNumeroPrimo();
-    int n = p * q;
-    int euler = (p - 1) * (q - 1);
-    double e = generarNumeroCoPrimo(euler);
-    int d = generarNumeroD(e, euler);
+    int p = 61; //generarNumeroPrimo();
+    int q = 53; //generarNumeroPrimo();
+    int n = 3233; //p * q;
+    int euler = 3120; //(p - 1) * (q - 1);
+    int e = 17; //generarNumeroCoPrimo(euler);
+    int d = 2753; //generarNumeroD(e, euler);
     
-    for(int i = 0; i <= texto.length(); i++) {
+    for(int i = 0; i < texto.length(); i++) {
         char letra = texto.charAt(i);
-        double valorASCII = (int) letra;
-        double codigo = (Math.pow(valorASCII, e)) % n;
-        mensajeCifrado.append(codigo).append("*");
+        int valorASCII = (int) letra;
+        int codigo = 1;
+        
+        for(int j = 0; j < e; j++) {
+            codigo *= valorASCII;
+        }
+        
+        mensajeCifrado.append(codigo);
     }
+    
+    claveN = n;
+    claveD = d;
     return mensajeCifrado.toString();
   }
   
   @Override
   public  String desencriptar(String texto){
-    return "";
+    String[] Texto = texto.split("\\*");
+    StringBuilder mensajeDescifrado = new StringBuilder();
+    int n = getClave1();
+    double d = getClave2();
+    
+    for(String valores: Texto) {
+        double valorRSA = Integer.parseInt(valores);
+        double codigo = (Math.pow(valorRSA, d) % n);
+        char letra = (char) (codigo);
+        mensajeDescifrado.append(letra);
+    }
+    
+    return mensajeDescifrado.toString();
   }
   
   @Override
@@ -92,10 +112,12 @@ public class RSA extends Criptografia{
   /***
    * Métod generarNumeroD
    * Se encarga de generar un valor que cumpla la condición de divisibilidad de euler
+     * @param eAux
+     * @param eulerAux
    * @param --
    * @return int: Devuelve un valor numérico
    */
-  public static int generarNumeroD(double eAux, int eulerAux) {
+  public static int generarNumeroD(int eAux, int eulerAux) {
     Random num = new Random();
     int numeroAleatorio;
     
@@ -152,15 +174,15 @@ public class RSA extends Criptografia{
    * @param b
    * @return boolean: Devuelve true si el número cumple la condición, de lo contrario devuelve un false
    */
-  public static boolean esDivisiblePorEuler(int numero, double a, int b) {
+  public static boolean esDivisiblePorEuler(int numero, int a, int b) {
       return ((numero * a) - 1) % b == 0;
   }
   
   public Integer getClave1(){
-    return clave1;
+    return claveN;
   }
   
   public Integer getClave2(){
-    return clave2;
+    return claveD;
   }
 }
