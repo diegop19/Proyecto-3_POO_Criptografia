@@ -38,15 +38,19 @@ public abstract class Criptografia {
     return verificarTextoEntrada(texto);
   }
   
+  /**
+   *Metodo equals()
+   * @param obj
+   * @return true si los nombres de las clases comparadas son iguales, false si no
+   */
   @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;  // Referencia al mismo objeto
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;  // Tipos diferentes o objeto nulo
-        }
-
-        return true;  // Ambos objetos son de la misma clase
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;  
     }
+    if (obj == null || getClass() != obj.getClass()) {
+      return false;  
+    }
+    return true;  
+  }
 }
