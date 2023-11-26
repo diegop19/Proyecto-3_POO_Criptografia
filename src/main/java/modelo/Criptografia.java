@@ -12,6 +12,7 @@ public abstract class Criptografia {
    * Metodos Abstractos encriptar y desencriptar
    * @param texto
    * @return String
+     * @throws java.lang.Exception
   */
   public abstract String encriptar(String texto);
   public abstract String desencriptar(String texto);

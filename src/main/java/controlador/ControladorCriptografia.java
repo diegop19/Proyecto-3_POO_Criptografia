@@ -3,6 +3,8 @@ import modelo.*;
 import vista.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import modelo.cifradobinaro.*;
 import modelo.cifradomoderno.*;
@@ -42,7 +44,14 @@ public class ControladorCriptografia implements ActionListener{
   @Override
   public void actionPerformed(ActionEvent e){
     switch(e.getActionCommand()){              
-        case "Aplicar Algoritmo" -> aplicarAlgoritmo();
+        case "Aplicar Algoritmo" -> {
+            try {
+                aplicarAlgoritmo();
+            } catch (Exception ex) {
+                Logger.getLogger(ControladorCriptografia.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
         case "Limpiar Texto" -> limpiarTxt();
         case "Enviar por Correo" -> crearControladorCorreo();
         case "SALIR" -> vista.salir();
@@ -54,8 +63,9 @@ public class ControladorCriptografia implements ActionListener{
    * Metodo aplicarAlgoritmo()
    * Encargado de hacer las llamadas correspondientes para verificar
    * y aplicar el algoritmo especificado.
+     * @throws java.lang.Exception
    */
-  public void aplicarAlgoritmo(){
+  public void aplicarAlgoritmo() throws Exception{
     if(!vista.datosCorrectos()){  // Verificar que la entrada no sea vacia 
       JOptionPane.showMessageDialog(vista, "La entrada no puede ser vacía");
     }
@@ -128,8 +138,9 @@ public class ControladorCriptografia implements ActionListener{
    * Metodo getSalida()
    * @param pEntrada
    * @return el texto de salida a mostrar en pantalla
+     * @throws java.lang.Exception
    */
-  public String getSalida(String pEntrada){
+  public String getSalida(String pEntrada) throws Exception{
     return switch(tipoOperacion){
       case "Encriptar" -> criptografia.encriptar(pEntrada);
       case "Desencriptar" -> criptografia.desencriptar(pEntrada);

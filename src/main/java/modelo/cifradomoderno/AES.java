@@ -6,6 +6,8 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Class AES
@@ -21,26 +23,31 @@ public class AES extends Criptografia{
    * @throws Exception 
    */
   @Override
-  public  String encriptar(String texto) throws Exception{
+  public  String encriptar(String texto) {
     texto = texto.toUpperCase();
     StringBuilder mensajeCifrado = new StringBuilder();
 
-    KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-    keyGenerator.init(256); // Seleccionar el tamaño de la clave (128, 192 o 256 bits)
-    SecretKey secretKey = keyGenerator.generateKey();
-    claveSecreta = secretKey;
+    KeyGenerator keyGenerator;
+      try {
+          keyGenerator = KeyGenerator.getInstance("AES");
+          keyGenerator.init(256);
+          SecretKey secretKey = keyGenerator.generateKey();
+          claveSecreta = secretKey;
 
-    Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+          Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
 
-    cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-    byte[] codigo = cipher.doFinal(texto.getBytes());
+          cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+          byte[] codigo = cipher.doFinal(texto.getBytes());
 
-    String mensajeCifradoBase64 = Base64.getEncoder().encodeToString(codigo);
-    mensajeCifrado.append(mensajeCifradoBase64);
+          String mensajeCifradoBase64 = Base64.getEncoder().encodeToString(codigo);
+          mensajeCifrado.append(mensajeCifradoBase64);
+          
+      } catch (Exception ex) {
+          Logger.getLogger(AES.class.getName()).log(Level.SEVERE, null, ex);
+      }
 
     return mensajeCifrado.toString();
   }
-  
   
   /***
    * Método desencriptar
@@ -49,7 +56,7 @@ public class AES extends Criptografia{
    * @throws Exception 
    */
   @Override
-  public  String desencriptar(String texto) throws Exception{
+  public  String desencriptar(String texto) {
     texto = texto.toUpperCase();
     StringBuilder mensajeDescifrado = new StringBuilder();
 
