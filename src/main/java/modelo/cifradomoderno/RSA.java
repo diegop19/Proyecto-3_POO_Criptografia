@@ -56,8 +56,7 @@ public class RSA extends Criptografia{
     for(String valores: Texto) {
         double valorRSA = Integer.parseInt(valores);
         double codigo = (Math.pow(valorRSA, d) % n);
-        int codigoInt = Double.valueOf(codigo).intValue();
-        
+        int codigoInt = Double.valueOf(codigo).intValue();       
         char letra = (char) (codigo);
         mensajeDescifrado.append(letra);
     }

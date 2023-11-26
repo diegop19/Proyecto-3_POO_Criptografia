@@ -35,7 +35,7 @@ public class Llave extends Criptografia{
             int numClaveLetra = (char) (claveLetra - 'A' + 1);
             
             int codigo = numLetra + numClaveLetra; 
-            System.out.println(codigo);
+            //System.out.println(codigo);
             if (codigo > 26) {
               codigo = codigo - 26;
               

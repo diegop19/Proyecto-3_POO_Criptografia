@@ -31,7 +31,7 @@ public abstract class Criptografia {
   /**
    * Metodo concreto verificarTextoEntrada()
    * Encargado de verificar el caso más básico de entrada. 
-   * Esto en el caso de que se desee encriptar.
+   * Esto en el caso de que se desee desencriptar.
    * @param texto
    * @return true si la verificacion fue exitosa, false si no. 
    */

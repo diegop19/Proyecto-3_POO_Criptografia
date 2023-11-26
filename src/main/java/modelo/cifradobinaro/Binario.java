@@ -2,7 +2,7 @@ package modelo.cifradobinaro;
 
 import modelo.Criptografia;
 import java.util.HashMap;
-import java.io.BufferedInputStream;
+
 /**
  * Class Binario
  * @authors Diego Araya & Raul Alfaro

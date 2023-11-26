@@ -68,7 +68,7 @@ public class AppForm extends javax.swing.JFrame {
         jLabel2.setText("Operacion a realizar :");
 
         boxTipoOperacion.setFont(new java.awt.Font("Segoe UI Semilight", 0, 14)); // NOI18N
-        boxTipoOperacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Encriptar", "Desencriptar", " " }));
+        boxTipoOperacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Encriptar", "Desencriptar" }));
         boxTipoOperacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxTipoOperacionActionPerformed(evt);

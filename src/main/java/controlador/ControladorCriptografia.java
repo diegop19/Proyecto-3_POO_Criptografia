@@ -85,14 +85,14 @@ public class ControladorCriptografia implements ActionListener{
         criptografia = seleccionarAlgoritmo(algoritmo);
       }
       
-      verificarAlgoritmosModernos();
-      
       if(!verificarEntrada(entrada)){
         JOptionPane.showMessageDialog(vista, "El texto de entrada no es compatible con la operacion o el Algoritmo");
       }
       else{
-        String salida = getSalida(entrada);
-        mostrarResultado(salida);
+        if(verificarAlgoritmosModernos()){
+          String salida = getSalida(entrada);
+          mostrarResultado(salida);
+        }
       }
     }
   }
@@ -148,40 +148,44 @@ public class ControladorCriptografia implements ActionListener{
     };
   }
   
-  public void verificarAlgoritmosModernos(){
-    verificarDES();
-    verificarAES();
-    verificarRSA();
+  public boolean verificarAlgoritmosModernos(){
+      return verificarDES()& verificarAES()& verificarRSA();   
   }
   
-  public void verificarDES(){
+  public boolean verificarDES(){
     if("DES".equals(criptografia.getClass().getSimpleName()) & "Desencriptar".equals(tipoOperacion) ){
         System.out.println("DES desencriptar");
         DES des = (DES)criptografia;
         if(des.getClaveSecreta() == null){
             JOptionPane.showMessageDialog(vista, "Para utilizar el desencriptado DES es nesesario haber encriptado, esto por las claves privadas");
+            return false;
         } 
     }
+    return true;
   }
   
-  public void verificarAES(){
+  public boolean verificarAES(){
     if("AES".equals(criptografia.getClass().getSimpleName()) & "Desencriptar".equals(tipoOperacion) ){
         System.out.println("AES desencriptar");
         AES aes = (AES)criptografia;
         if(aes.getClaveSecreta() == null){
             JOptionPane.showMessageDialog(vista, "Para utilizar el desencriptado AES es nesesario haber encriptado, esto por las claves privadas");
+            return false;
         } 
     }
+    return true;
   }
   
-  public void verificarRSA(){
+  public boolean verificarRSA(){
     if("RSA".equals(criptografia.getClass().getSimpleName()) & "Desencriptar".equals(tipoOperacion) ){
         System.out.println("rsa desencriptar");
         RSA rsa = (RSA)criptografia;
         if(rsa.getClave1() == null || rsa.getClave2() == null){
             JOptionPane.showMessageDialog(vista, "Para utilizar el desencriptado RSA es nesesario haber encriptado, esto por las claves privadas");
+            return false;
         } 
     }
+    return true;
   }
   
   /**
