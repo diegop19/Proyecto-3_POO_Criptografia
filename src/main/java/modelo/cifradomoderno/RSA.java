@@ -2,6 +2,7 @@ package modelo.cifradomoderno;
 
 import modelo.Criptografia;
 import java.util.Random;
+import java.math.BigInteger;
 
 /**
  * Class RSA
@@ -22,23 +23,34 @@ public class RSA extends Criptografia{
   public  String encriptar(String texto){
     StringBuilder mensajeCifrado = new StringBuilder();
     texto = texto.toUpperCase();
-    int p = 61; //generarNumeroPrimo();
-    int q = 53; //generarNumeroPrimo();
-    int n = 3233; //p * q;
-    int euler = 3120; //(p - 1) * (q - 1);
-    int e = 17; //generarNumeroCoPrimo(euler);
-    int d = 2753; //generarNumeroD(e, euler);
+    int p = generarNumeroPrimo();
+    System.out.println(p);
+    int q = generarNumeroPrimo();
+    System.out.println(q);
+    int n = p * q;
+    System.out.println(n);
+    int euler = (p - 1) * (q - 1);
+    System.out.println(euler);
+    
+    if (euler < 0) {
+      euler *= -1;
+    }
+    
+    int e = generarNumeroCoPrimo(euler);
+    System.out.println(e);
+    int d = generarNumeroD(e, euler);
+    System.out.println(d);
     
     for(int i = 0; i < texto.length(); i++) {
         char letra = texto.charAt(i);
         int valorASCII = (int) letra;
-        int codigo = 1;
+        BigInteger codigo = BigInteger.ONE;
         
-        for(int j = 0; j < e; j++) {
-            codigo *= valorASCII;
+        for(int j = 1; j <= e; j++) {
+            codigo = codigo.multiply(BigInteger.valueOf(valorASCII));
         }
-        
-        mensajeCifrado.append(codigo);
+        codigo = codigo.mod(BigInteger.valueOf(n));
+        mensajeCifrado.append(codigo).append("*");
     }
     
     claveN = n;
@@ -51,14 +63,30 @@ public class RSA extends Criptografia{
     String[] Texto = texto.split("\\*");
     StringBuilder mensajeDescifrado = new StringBuilder();
     int n = getClave1();
-    double d = getClave2();
+    int d = getClave2();
     
     for(String valores: Texto) {
+
         double valorRSA = Integer.parseInt(valores);
         double codigo = (Math.pow(valorRSA, d) % n);
         int codigoInt = Double.valueOf(codigo).intValue();       
         char letra = (char) (codigo);
+
+        /**
+        BigInteger codigo = BigInteger.ONE;
+        int valorRSA = Integer.parseInt(valores);
+        for(int j = 1; j <= d; j++) {
+            codigo = codigo.multiply(BigInteger.valueOf(valorRSA));
+        }
+        
+        codigo = codigo.mod(BigInteger.valueOf(n));
+        System.out.println(n);
+        int valor = codigo.intValue();
+        
+        char letra = (char) (valor);
+
         mensajeDescifrado.append(letra);
+        * */
     }
     
     return mensajeDescifrado.toString();
