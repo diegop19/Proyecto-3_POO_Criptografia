@@ -69,7 +69,6 @@ public class AES extends Criptografia{
     Cipher cipher;
       try {
           cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-          System.out.println(cipher.toString());
           cipher.init(Cipher.DECRYPT_MODE, clave);
           byte[] codigo = cipher.doFinal(Base64.getDecoder().decode(texto));
           mensajeDescifrado.append(new String(codigo));

@@ -23,8 +23,7 @@ public class DES extends Criptografia{
   /***
    * Método encriptar
    * @param texto
-   * @return String: Devuelve el mensaje encriptado como una cadena String mediante la técnica RSA
-   * @throws Exception 
+   * @return String: Devuelve el mensaje encriptado como una cadena String mediante la técnica RSA 
    */
   @Override
   public  String encriptar(String texto){
@@ -35,7 +34,6 @@ public class DES extends Criptografia{
           keyGenerator = KeyGenerator.getInstance("DES");
           SecretKey secretKey = keyGenerator.generateKey();
           claveSecreta = secretKey;
-          System.out.println(claveSecreta);
           Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
 
           cipher.init(Cipher.ENCRYPT_MODE, secretKey);
@@ -54,19 +52,17 @@ public class DES extends Criptografia{
    * Método dsencriptar
    * @param texto
    * @return String: Devuelve el mensaje desencriptado como una cadena String mediante la técnica RSA
-   * @throws Exception 
    */
   @Override
   public  String desencriptar(String texto){
     StringBuilder mensajeDescifrado = new StringBuilder();
     SecretKey clave = getClaveSecreta();
-    System.out.println(clave);
     Cipher cipher;
       try {
           cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
           cipher.init(Cipher.DECRYPT_MODE, clave);
           byte[] codigo = cipher.doFinal(Base64.getDecoder().decode(texto));
-          mensajeDescifrado.append(codigo);
+          mensajeDescifrado.append(new String (codigo));
       } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException ex) {
           Logger.getLogger(DES.class.getName()).log(Level.SEVERE, null, ex);
       }
