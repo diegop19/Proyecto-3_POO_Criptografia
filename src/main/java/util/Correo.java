@@ -63,7 +63,7 @@ public class Correo {
             Message.RecipientType.TO,
             InternetAddress.parse(destinario));
 
-          message.setSubject("Mensaje Encriptado");
+          message.setSubject("Mensaje Cifrado");
           message.setText(mensaje);  
 
           // Envia el mensaje
