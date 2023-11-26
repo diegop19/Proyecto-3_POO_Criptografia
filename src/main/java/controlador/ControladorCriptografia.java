@@ -111,7 +111,7 @@ public class ControladorCriptografia implements ActionListener{
        case "Palabra Inversa" -> new PalabraInversa();
        case "Mensaje Inverso" -> new MensajeInverso();
        case "Codificación Binaria" -> new Binario();
-       case "Codificacion por Código Telefónico" -> new CodigoTelefonico();
+       case "Código Telefónico" -> new CodigoTelefonico();
        case "RSA" -> new RSA();
        case "DES" -> new DES();
        case "AES" -> new AES();
