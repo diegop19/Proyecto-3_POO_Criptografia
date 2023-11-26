@@ -39,7 +39,7 @@ public class AES extends Criptografia{
           SecretKey secretKey = keyGenerator.generateKey();
           claveSecreta = secretKey;
 
-          Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+          Cipher cipher = generarCipher();
 
           cipher.init(Cipher.ENCRYPT_MODE, secretKey);
           byte[] codigo = cipher.doFinal(texto.getBytes());
@@ -53,6 +53,7 @@ public class AES extends Criptografia{
 
     return mensajeCifrado.toString();
   }
+  
   
   /***
    * Método desencriptar
@@ -86,6 +87,16 @@ public class AES extends Criptografia{
   @Override
   public boolean verificarCodigoEntrada(String codigo){
      return verificarTextoEntrada(codigo);
+  }
+  
+  public KeyGenerator generarKey() throws Exception {
+    KeyGenerator clave = KeyGenerator.getInstance("AES");
+    return clave;
+  }
+  
+  public Cipher generarCipher() throws Exception {
+     Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+     return cipher;
   }
   
   public SecretKey getClaveSecreta() {
