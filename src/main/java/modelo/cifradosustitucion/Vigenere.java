@@ -24,7 +24,8 @@ public class Vigenere extends Criptografia{
   @Override
   public  String encriptar(String texto){
       texto = texto.toUpperCase();
-      int clave = 23;
+      String clave = getClave();
+      int newClave = Integer.parseInt(clave);
       boolean flag = true;
       StringBuilder mensajeCifrado = new StringBuilder();
       
@@ -33,7 +34,7 @@ public class Vigenere extends Criptografia{
           
           if (flag) {
               if (Character.isLetter(letra)) {
-                  int claveNum = clave / 10;
+                  int claveNum = newClave / 10;
              
                   int letraNum = letra - 'A';
              
@@ -51,7 +52,7 @@ public class Vigenere extends Criptografia{
               
           } else {
             if (Character.isLetter(letra)) {
-                int claveNum = clave % 10;
+                int claveNum = newClave % 10;
              
                 int letraNum = letra - 'A';
              
@@ -80,7 +81,8 @@ public class Vigenere extends Criptografia{
   @Override
   public  String desencriptar(String texto){
       texto = texto.toUpperCase();
-      int clave = 23;
+      String clave = getClave();
+      int newClave = Integer.parseInt(clave);
       boolean flag = true;
       StringBuilder mensajeCifrado = new StringBuilder();
       
@@ -89,7 +91,7 @@ public class Vigenere extends Criptografia{
           
           if (flag) {
               if (Character.isLetter(letra)) {
-                  int claveNum = clave / 10;
+                  int claveNum = newClave / 10;
              
                   int letraNum = letra - 'A';
              
@@ -107,7 +109,7 @@ public class Vigenere extends Criptografia{
               
           } else {
             if (Character.isLetter(letra)) {
-                int claveNum = clave % 10;
+                int claveNum = newClave % 10;
              
                 int letraNum = letra - 'A';
              
@@ -125,6 +127,10 @@ public class Vigenere extends Criptografia{
           }
       }
       return mensajeCifrado.toString();
+  }
+  
+  public String getClave() {
+    return clave;
   }
   
 }

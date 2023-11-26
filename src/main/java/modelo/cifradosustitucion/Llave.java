@@ -25,18 +25,19 @@ public class Llave extends Criptografia{
   @Override
   public  String encriptar(String texto){
     texto = texto.toUpperCase();
-    String clave = "TANGO";
+    String clave2 = getClave();
+    String Llave = clave2.toUpperCase();
     StringBuilder mensajeCifrado = new StringBuilder();
     
     for(int i = 0, j = 0; i < texto.length(); i++) {
         
-        if (j >= clave.length()) {
+        if (j >= Llave.length()) {
             j = 0;
         }
         
         char letra = texto.charAt(i);
-        char claveLetra = clave.charAt(j);
-        
+        char claveLetra = Llave.charAt(j);
+    
         if (Character.isLetter(letra)) {
             int numLetra = (char) (letra - 'A' + 1);
             int numClaveLetra = (char) (claveLetra - 'A' + 1);
@@ -50,11 +51,11 @@ public class Llave extends Criptografia{
             
             if (codigo % 26 == 0) {
               mensajeCifrado.append("Z");
+              j++;
               continue;
             }
             
             char letraCifrada = (char) (codigo % 26 + 'A' - 1); 
-            
             mensajeCifrado.append(letraCifrada);
             j++;
             
@@ -74,17 +75,18 @@ public class Llave extends Criptografia{
   @Override
   public  String desencriptar(String texto){
       texto = texto.toUpperCase();
-      String clave = "TANGO";
+      String clave2 = getClave();
+      String Llave = clave2.toUpperCase();
       StringBuilder mensajeDescifrado = new StringBuilder();
       
       for(int i = 0, j = 0; i < texto.length(); i++) {
           
-          if (j >= clave.length()) {
+          if (j >= Llave.length()) {
             j = 0;
           }
           
           char letra = texto.charAt(i);
-          char claveLetra = clave.charAt(j);
+          char claveLetra = Llave.charAt(j);
           
           if (Character.isLetter(letra)) {
              int letraNum = (letra - 'A' + 1);
@@ -105,6 +107,10 @@ public class Llave extends Criptografia{
           }
       }
       return mensajeDescifrado.toString();
+  }
+  
+  public String getClave() {
+    return clave;
   }
   
 }

@@ -1,8 +1,17 @@
 package modelo.cifradomoderno;
 
+import java.security.InvalidKeyException;
 import modelo.Criptografia;
-import java.util.Random;
-import java.math.BigInteger;
+import javax.crypto.Cipher;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.util.Base64;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 /**
  * Class RSA
@@ -10,8 +19,8 @@ import java.math.BigInteger;
  */
 
 public class RSA extends Criptografia{
-  private Integer claveN;
-  private Integer claveD;
+  private PublicKey claveN;
+  private PrivateKey claveD;
   
   /***
    * Método encriptar
@@ -21,75 +30,45 @@ public class RSA extends Criptografia{
    */
   @Override
   public  String encriptar(String texto){
-    StringBuilder mensajeCifrado = new StringBuilder();
     texto = texto.toUpperCase();
-    int p = generarNumeroPrimo();
-    System.out.println(p);
-    int q = generarNumeroPrimo();
-    System.out.println(q);
-    int n = p * q;
-    System.out.println(n);
-    int euler = (p - 1) * (q - 1);
-    System.out.println(euler);
-    
-    if (euler < 0) {
-      euler *= -1;
+    StringBuilder mensajeCifrado = new StringBuilder();
+    try {
+            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+            keyPairGenerator.initialize(2048); // Tamaño de clave, puede variar
+            KeyPair keyPair = keyPairGenerator.generateKeyPair();
+            PublicKey clavePublica = keyPair.getPublic();
+            PrivateKey clavePrivada = keyPair.getPrivate();
+            claveN = clavePublica;
+            claveD = clavePrivada;
+            
+            Cipher cipher = Cipher.getInstance("RSA");
+            cipher.init(Cipher.ENCRYPT_MODE, clavePublica);
+            byte[] textoEncriptado = cipher.doFinal(texto.getBytes());
+            String mensaje = Base64.getEncoder().encodeToString(textoEncriptado);
+            mensajeCifrado.append(mensaje);
+            return mensajeCifrado.toString();
+            
+    } catch (InvalidKeyException | NoSuchAlgorithmException | BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException e) {
     }
     
-    int e = generarNumeroCoPrimo(euler);
-    System.out.println(e);
-    int d = generarNumeroD(e, euler);
-    System.out.println(d);
-    
-    for(int i = 0; i < texto.length(); i++) {
-        char letra = texto.charAt(i);
-        int valorASCII = (int) letra;
-        BigInteger codigo = BigInteger.ONE;
-        
-        for(int j = 1; j <= e; j++) {
-            codigo = codigo.multiply(BigInteger.valueOf(valorASCII));
-        }
-        codigo = codigo.mod(BigInteger.valueOf(n));
-        mensajeCifrado.append(codigo).append("*");
-    }
-    
-    claveN = n;
-    claveD = d;
     return mensajeCifrado.toString();
   }
   
   @Override
   public  String desencriptar(String texto){
-    String[] Texto = texto.split("\\*");
     StringBuilder mensajeDescifrado = new StringBuilder();
-    int n = getClave1();
-    int d = getClave2();
-    
-    for(String valores: Texto) {
-
-        double valorRSA = Integer.parseInt(valores);
-        double codigo = (Math.pow(valorRSA, d) % n);
-        int codigoInt = Double.valueOf(codigo).intValue();       
-        char letra = (char) (codigo);
-
-        /**
-        BigInteger codigo = BigInteger.ONE;
-        int valorRSA = Integer.parseInt(valores);
-        for(int j = 1; j <= d; j++) {
-            codigo = codigo.multiply(BigInteger.valueOf(valorRSA));
-        }
-        
-        codigo = codigo.mod(BigInteger.valueOf(n));
-        System.out.println(n);
-        int valor = codigo.intValue();
-        
-        char letra = (char) (valor);
-
-        mensajeDescifrado.append(letra);
-        * */
+    PrivateKey clavePrivada = getClave2();
+    try {
+         Cipher cipher = Cipher.getInstance("RSA");
+         cipher.init(Cipher.DECRYPT_MODE, clavePrivada);
+         byte[] textoEnBytes = Base64.getDecoder().decode(texto);
+         byte[] textoDesencriptado = cipher.doFinal(textoEnBytes);
+         mensajeDescifrado.append(new String(textoDesencriptado));
+         return mensajeDescifrado.toString();
+         
+    } catch (InvalidKeyException | NoSuchAlgorithmException | BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException e) {
+        return null;
     }
-    
-    return mensajeDescifrado.toString();
   }
   
   @Override
@@ -102,116 +81,11 @@ public class RSA extends Criptografia{
      return verificarTextoEntrada(codigo);
   }
   
-  /***
-   * Métod generarNumeroPrimo
-   * Se encarga de generar un numero primo aleatorio
-   * @param --
-   * @return int: Devuelve un valor numérico primo
-   */
-  public static int generarNumeroPrimo() {
-    Random num = new Random();
-    int numeroAleatorio;
-    
-    do {
-       numeroAleatorio = num.nextInt(Integer.MAX_VALUE);
-       
-    } while (!esPrimo(numeroAleatorio));
-    
-    return numeroAleatorio;
-  }
-  
-  /***
-   * Métod generarNumero
-   * Se encarga de generar un número aleatorio que sea coprimo con el valor euler
-   * @param limite
-   * @return int: Devuelve un valor numérico
-   */
-  public static int generarNumeroCoPrimo(int limite) {
-    Random num = new Random();
-    int numeroAleatorio;
-    
-    do { 
-       numeroAleatorio = num.nextInt(limite);
-       
-    } while (!esCoPrimo(numeroAleatorio, limite));
-    
-    return numeroAleatorio;
-  }
-  
-  /***
-   * Métod generarNumeroD
-   * Se encarga de generar un valor que cumpla la condición de divisibilidad de euler
-     * @param eAux
-     * @param eulerAux
-   * @param --
-   * @return int: Devuelve un valor numérico
-   */
-  public static int generarNumeroD(int eAux, int eulerAux) {
-    Random num = new Random();
-    int numeroAleatorio;
-    
-    do {
-       numeroAleatorio = num.nextInt(Integer.MAX_VALUE);
-       
-    } while (!esDivisiblePorEuler(numeroAleatorio, eAux, eulerAux));
-    
-    return numeroAleatorio;
-  }
-  
-  /***
-   * Métod esPrimo
-   * Se encarga de verificar si el número ingresado es un primo
-   * @param numero
-   * @return boolean: Devuelve true si el número es primo, de lo contrario devuelve un false
-   */
-  public static boolean esPrimo(int numero) {
-    if (numero <= 1) {
-      return false;
-    }
-    
-    for(int i = 2; i <= Math.sqrt(numero); i++) {
-        if (numero % i == 0) {
-          return false;
-        }
-    }
-    
-    return true;
-  }
-  
-  /***
-   * Métod esCoPrimo
-   * Se encarga de verificar si el número ingresado es un primo
-   * @param a
-   * @param b
-   * @return boolean: Devuelve true si el número es primo, de lo contrario devuelve un false
-   */
-  public static boolean esCoPrimo(int a, int b) {
-    while (b != 0) {
-      int temp = b;
-      b = a % b;
-      a = temp;
-    }
-    
-    return a == 1;
-  }
-  
-  /***
-   * Métod esDivisiblePorEuler
-   * Se encarga de verificar si el número ingresado cumple con la condición de divisbilidad de Euler
-   * @param numero
-   * @param a
-   * @param b
-   * @return boolean: Devuelve true si el número cumple la condición, de lo contrario devuelve un false
-   */
-  public static boolean esDivisiblePorEuler(int numero, int a, int b) {
-      return ((numero * a) - 1) % b == 0;
-  }
-  
-  public Integer getClave1(){
+  public PublicKey getClave1(){
     return claveN;
   }
   
-  public Integer getClave2(){
+  public PrivateKey getClave2(){
     return claveD;
   }
 }
