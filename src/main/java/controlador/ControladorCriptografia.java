@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import modelo.cifradobinaro.*;
 import modelo.cifradomoderno.*;
@@ -84,14 +86,15 @@ public class ControladorCriptografia implements ActionListener{
       else{
         criptografia = seleccionarAlgoritmo(algoritmo);
       }
-      
-      if(!verificarEntrada(entrada)){
-        JOptionPane.showMessageDialog(vista, "El texto de entrada no es compatible con la operacion o el Algoritmo");
-      }
-      else{
-        if(verificarAlgoritmosModernos()){
-          String salida = getSalida(entrada);
-          mostrarResultado(salida);
+      if (criptografia != null){
+        if(!verificarEntrada(entrada)){
+          JOptionPane.showMessageDialog(vista, "El texto de entrada no es compatible con la operacion o el Algoritmo");
+        }
+        else{
+          if(verificarAlgoritmosModernos()){
+            String salida = getSalida(entrada);
+            mostrarResultado(salida);
+          }
         }
       }
     }
@@ -144,21 +147,56 @@ public class ControladorCriptografia implements ActionListener{
     }
   }
   
-  public Criptografia crearLlave(){
-    if(verificarClave()){
-      return new Llave(vista.txtClave.getText());
+   public boolean verificarClaveVigenere(){
+    Pattern patron = Pattern.compile("^\\d{2}$");
+    Matcher matcher = patron.matcher(vista.txtClave.getText());
+    if (matcher.matches()){
+        return true;   
     }
     else{
-      return new Llave();
+        JOptionPane.showMessageDialog(vista, "Para el algoritmo Vigenere solo se permiten un numero entero de dos digitos");
+        return false;
+    }
+  }
+   
+  public boolean verificarClaveLlave(){
+    Pattern patron = Pattern.compile("^[a-zA-Z]+$");
+    Matcher matcher = patron.matcher(vista.txtClave.getText());
+    if (matcher.matches()){
+        return true;   
+    }
+    else{
+        JOptionPane.showMessageDialog(vista, "Para el algoritmo Llave solo se permite una cadena de texto sin espacios");
+        return false;
+    }
+  }
+  
+  
+  public Criptografia crearLlave(){
+    if(verificarClave()){
+      if (verificarClaveLlave()){
+        return new Llave(vista.txtClave.getText());
+      }
+      else{
+        return null;
+      }
+    }
+    else{
+      return null;
     }
   }
   
   public Criptografia crearVigenere(){
     if(verificarClave()){
-      return new Vigenere(vista.txtClave.getText());
+      if (verificarClaveVigenere()){
+        return new Vigenere(vista.txtClave.getText());
+      }
+      else{
+        return null;
+      }
     }
     else{
-      return new Vigenere();
+      return null;
     }
   }
   
