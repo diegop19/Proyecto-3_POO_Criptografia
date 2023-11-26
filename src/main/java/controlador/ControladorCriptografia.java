@@ -81,7 +81,12 @@ public class ControladorCriptografia implements ActionListener{
       if(criptografia != null){
         if (!criptografia.equals(seleccionarAlgoritmo(algoritmo))){
          criptografia = seleccionarAlgoritmo(algoritmo);// se inicializa criptografia con la clase correspondiente al algoritmo
-        } 
+        }
+        else{
+          if("Vigenere".equals(criptografia.getClass().getSimpleName()) || "Llave".equals(criptografia.getClass().getSimpleName()) ){
+            criptografia = seleccionarAlgoritmo(algoritmo);
+         }
+        }
       }
       else{
         criptografia = seleccionarAlgoritmo(algoritmo);
