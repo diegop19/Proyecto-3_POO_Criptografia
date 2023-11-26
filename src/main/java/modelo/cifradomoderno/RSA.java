@@ -13,7 +13,7 @@ public class RSA extends Criptografia{
   private Integer claveD;
   
   /***
-   * Métod encriptar
+   * Método encriptar
    * Se encarga de encriptar el mensaje que recibe mediante la técnica RSA
    * @param texto
    * @return String: Devuelve valores numéricos como una cadena de String
