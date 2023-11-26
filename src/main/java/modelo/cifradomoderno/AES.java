@@ -1,5 +1,7 @@
 package modelo.cifradomoderno;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import modelo.Criptografia;
 import modelo.Criptografia;
 import javax.crypto.Cipher;
@@ -8,6 +10,9 @@ import javax.crypto.SecretKey;
 import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 /**
  * Class AES
@@ -61,12 +66,15 @@ public class AES extends Criptografia{
     StringBuilder mensajeDescifrado = new StringBuilder();
 
     SecretKey clave = getClaveSecreta();
-    Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-
-    cipher.init(Cipher.DECRYPT_MODE, clave);
-    byte[] codigo = cipher.doFinal(Base64.getDecoder().decode(texto));
-    mensajeDescifrado.append(new String(codigo));
-
+    Cipher cipher;
+      try {
+          cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+          cipher.init(Cipher.DECRYPT_MODE, clave);
+          byte[] codigo = cipher.doFinal(Base64.getDecoder().decode(texto));
+          mensajeDescifrado.append(new String(codigo));
+      } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException ex) {
+          Logger.getLogger(AES.class.getName()).log(Level.SEVERE, null, ex);
+      }
     return mensajeDescifrado.toString();
   }
   

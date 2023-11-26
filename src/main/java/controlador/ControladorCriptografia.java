@@ -85,7 +85,7 @@ public class ControladorCriptografia implements ActionListener{
         criptografia = seleccionarAlgoritmo(algoritmo);
       }
       
-      verificarRSA();
+      verificarAlgoritmosModernos();
       
       if(!verificarEntrada(entrada)){
         JOptionPane.showMessageDialog(vista, "El texto de entrada no es compatible con la operacion o el Algoritmo");
@@ -148,6 +148,32 @@ public class ControladorCriptografia implements ActionListener{
     };
   }
   
+  public void verificarAlgoritmosModernos(){
+    verificarDES();
+    verificarAES();
+    verificarRSA();
+  }
+  
+  public void verificarDES(){
+    if("DES".equals(criptografia.getClass().getSimpleName()) & "Desencriptar".equals(tipoOperacion) ){
+        System.out.println("DES desencriptar");
+        DES des = (DES)criptografia;
+        if(des.getClaveSecreta() == null){
+            JOptionPane.showMessageDialog(vista, "Para utilizar el desencriptado DES es nesesario haber encriptado, esto por las claves privadas");
+        } 
+    }
+  }
+  
+  public void verificarAES(){
+    if("AES".equals(criptografia.getClass().getSimpleName()) & "Desencriptar".equals(tipoOperacion) ){
+        System.out.println("AES desencriptar");
+        AES aes = (AES)criptografia;
+        if(aes.getClaveSecreta() == null){
+            JOptionPane.showMessageDialog(vista, "Para utilizar el desencriptado AES es nesesario haber encriptado, esto por las claves privadas");
+        } 
+    }
+  }
+  
   public void verificarRSA(){
     if("RSA".equals(criptografia.getClass().getSimpleName()) & "Desencriptar".equals(tipoOperacion) ){
         System.out.println("rsa desencriptar");
@@ -157,7 +183,6 @@ public class ControladorCriptografia implements ActionListener{
         } 
     }
   }
-  
   
   /**
    * Metodo mostraResultado()
