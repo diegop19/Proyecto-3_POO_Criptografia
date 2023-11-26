@@ -63,13 +63,13 @@ public class AES extends Criptografia{
    */
   @Override
   public  String desencriptar(String texto) {
-    texto = texto.toUpperCase();
     StringBuilder mensajeDescifrado = new StringBuilder();
 
     SecretKey clave = getClaveSecreta();
     Cipher cipher;
       try {
           cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+          System.out.println(cipher.toString());
           cipher.init(Cipher.DECRYPT_MODE, clave);
           byte[] codigo = cipher.doFinal(Base64.getDecoder().decode(texto));
           mensajeDescifrado.append(new String(codigo));

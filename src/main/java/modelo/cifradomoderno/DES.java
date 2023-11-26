@@ -35,6 +35,7 @@ public class DES extends Criptografia{
           keyGenerator = KeyGenerator.getInstance("DES");
           SecretKey secretKey = keyGenerator.generateKey();
           claveSecreta = secretKey;
+          System.out.println(claveSecreta);
           Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
 
           cipher.init(Cipher.ENCRYPT_MODE, secretKey);
@@ -57,9 +58,9 @@ public class DES extends Criptografia{
    */
   @Override
   public  String desencriptar(String texto){
-    texto = texto.toUpperCase();
     StringBuilder mensajeDescifrado = new StringBuilder();
     SecretKey clave = getClaveSecreta();
+    System.out.println(clave);
     Cipher cipher;
       try {
           cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");

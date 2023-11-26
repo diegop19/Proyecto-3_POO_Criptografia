@@ -7,7 +7,44 @@ import java.util.HashMap;
  * @authors Diego Araya & Raul Alfaro
  */
 public class CodigoTelefonico extends Criptografia {
-  
+    
+  /***
+   * Método HashMap
+   * Instancia cada palabra del Alfabeto con su respectivo código telefónico
+   * @return String: Devuelve la llave o el codigo según como se acceda
+   */
+  private static final HashMap<Character, String> teclado = new HashMap<>();
+
+    static {
+        teclado.put('A', "21");
+        teclado.put('B', "22");
+        teclado.put('C', "23");
+        teclado.put('D', "31");
+        teclado.put('E', "32");
+        teclado.put('F', "33");
+        teclado.put('G', "41");
+        teclado.put('H', "42");
+        teclado.put('I', "43");
+        teclado.put('J', "51");
+        teclado.put('K', "52");
+        teclado.put('L', "53");
+        teclado.put('M', "61");
+        teclado.put('N', "62");
+        teclado.put('O', "63");
+        teclado.put('P', "71");
+        teclado.put('Q', "72");
+        teclado.put('R', "73");
+        teclado.put('S', "74");
+        teclado.put('T', "81");
+        teclado.put('U', "82");
+        teclado.put('V', "83");
+        teclado.put('W', "91");
+        teclado.put('X', "92");
+        teclado.put('Y', "93");
+        teclado.put('Z', "94");
+        teclado.put(' ', "*");
+    }
+    
   /***
    * Método encriptar
    * Se encarga de encriptar el mensaje que recibe mediante la técnica telefónica
@@ -62,42 +99,5 @@ public class CodigoTelefonico extends Criptografia {
   public boolean verificarCodigoEntrada(String codigo){
      return verificador.verificarNumeros(codigo);
   }
-  
-  /***
-   * Método HashMap
-   * Instancia cada palabra del Alfabeto con su respectivo código telefónico
-   * @return String: Devuelve la llave o el codigo según como se acceda
-   */
-  private static final HashMap<Character, String> teclado = new HashMap<>();
-
-    static {
-        teclado.put('A', "21");
-        teclado.put('B', "22");
-        teclado.put('C', "23");
-        teclado.put('D', "31");
-        teclado.put('E', "32");
-        teclado.put('F', "33");
-        teclado.put('G', "41");
-        teclado.put('H', "42");
-        teclado.put('I', "43");
-        teclado.put('J', "51");
-        teclado.put('K', "52");
-        teclado.put('L', "53");
-        teclado.put('M', "61");
-        teclado.put('N', "62");
-        teclado.put('O', "63");
-        teclado.put('P', "71");
-        teclado.put('Q', "72");
-        teclado.put('R', "73");
-        teclado.put('S', "74");
-        teclado.put('T', "81");
-        teclado.put('U', "82");
-        teclado.put('V', "83");
-        teclado.put('W', "91");
-        teclado.put('X', "92");
-        teclado.put('Y', "93");
-        teclado.put('Z', "94");
-        teclado.put(' ', "*");
-    }
 
 }
