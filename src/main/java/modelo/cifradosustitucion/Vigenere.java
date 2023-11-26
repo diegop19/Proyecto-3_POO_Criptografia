@@ -7,7 +7,14 @@ import modelo.Criptografia;
  * @authors Diego Araya & Raul Alfaro
  */
 public class Vigenere extends Criptografia{
+  private String clave;
   
+  public Vigenere(){}
+  
+  public Vigenere(String clave){
+    this.clave = clave;
+  }    
+    
   /***
    * Método encriptar
    * Se encarga de encriptar el mensaje que recibe mediante la técnica Vigenere

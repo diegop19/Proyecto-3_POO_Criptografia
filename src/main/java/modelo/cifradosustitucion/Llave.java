@@ -8,6 +8,13 @@ import modelo.Criptografia;
  */
 
 public class Llave extends Criptografia{
+  private String clave;
+  
+  public Llave(){}
+  
+  public Llave(String clave){
+    this.clave = clave;
+  }
   
   /***
    * Método encriptar

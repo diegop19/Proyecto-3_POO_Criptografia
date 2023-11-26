@@ -106,8 +106,8 @@ public class ControladorCriptografia implements ActionListener{
   public Criptografia seleccionarAlgoritmo(String pAlgoritmo){
     return switch (pAlgoritmo){
        case "Cesár" -> new Cesar();
-       case "Llave" -> new Llave();
-       case "Vigenére" -> new Vigenere();
+       case "Llave" -> crearLlave();
+       case "Vigenére" -> crearVigenere();
        case "Palabra Inversa" -> new PalabraInversa();
        case "Mensaje Inverso" -> new MensajeInverso();
        case "Codificación Binaria" -> new Binario();
@@ -133,7 +133,35 @@ public class ControladorCriptografia implements ActionListener{
       default -> false;
     };
   }
-
+  
+  public boolean verificarClave(){
+    if (vista.verificarClave()){
+      return true;
+    }
+    else{
+        JOptionPane.showMessageDialog(vista, "Para utilizar los algoritmos Llave y Vigenere es nesesario ingresar una clave");
+        return false;
+    }
+  }
+  
+  public Criptografia crearLlave(){
+    if(verificarClave()){
+      return new Llave(vista.txtClave.getText());
+    }
+    else{
+      return new Llave();
+    }
+  }
+  
+  public Criptografia crearVigenere(){
+    if(verificarClave()){
+      return new Vigenere(vista.txtClave.getText());
+    }
+    else{
+      return new Vigenere();
+    }
+  }
+  
   /**
    * Metodo getSalida()
    * @param pEntrada
