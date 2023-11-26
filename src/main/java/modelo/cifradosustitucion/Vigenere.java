@@ -24,8 +24,8 @@ public class Vigenere extends Criptografia{
   @Override
   public  String encriptar(String texto){
       texto = texto.toUpperCase();
-      String clave = getClave();
-      int newClave = Integer.parseInt(clave);
+      String Key = getClave();
+      int newClave = Integer.parseInt(Key);
       boolean flag = true;
       StringBuilder mensajeCifrado = new StringBuilder();
       
@@ -81,8 +81,8 @@ public class Vigenere extends Criptografia{
   @Override
   public  String desencriptar(String texto){
       texto = texto.toUpperCase();
-      String clave = getClave();
-      int newClave = Integer.parseInt(clave);
+      String Key = getClave();
+      int newClave = Integer.parseInt(Key);
       boolean flag = true;
       StringBuilder mensajeCifrado = new StringBuilder();
       

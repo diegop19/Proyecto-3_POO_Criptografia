@@ -22,8 +22,9 @@ public class DES extends Criptografia{
   
   /***
    * Método encriptar
+   * Se encarga de encriptar el mensaje que recibe mediante la técnica DES
    * @param texto
-   * @return String: Devuelve el mensaje encriptado como una cadena String mediante la técnica RSA 
+   * @return String: Devuelve el mensaje encriptado como una cadena String
    */
   @Override
   public  String encriptar(String texto){
@@ -48,10 +49,11 @@ public class DES extends Criptografia{
     return mensajeCifrado.toString();
   }
   
-  /***
-   * Método dsencriptar
+ /***
+   * Método encriptar
+   * Se encarga de encriptar el mensaje que recibe mediante la técnica DES
    * @param texto
-   * @return String: Devuelve el mensaje desencriptado como una cadena String mediante la técnica RSA
+   * @return String: Devuelve el mensaje encriptado como una cadena String
    */
   @Override
   public  String desencriptar(String texto){

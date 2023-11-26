@@ -54,6 +54,12 @@ public class PalabraInversa extends Criptografia{
    return true;
   }
   
+   /***
+   * Método invertirPalabra
+   * Se encarga de invertir la palabra que recibe. Esta función es llamada por las funciones encriptar y desencriptar
+   * @param palabra
+   * @return String: Devuelve la palabra invertida como una cadena de string
+   */
   public String invertirPalabra(String palabra) {
     StringBuilder palabraInvertida = new StringBuilder();
     

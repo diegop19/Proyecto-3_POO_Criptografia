@@ -24,8 +24,7 @@ public class AES extends Criptografia{
   /***
    * Método encriptar
    * @param texto
-   * @return String: Devuelve el mensaje encriptado como una cadena String mediante la técnica AES
-   * @throws Exception 
+   * @return String: Devuelve el mensaje encriptado como una cadena String mediante la técnica AES 
    */
   @Override
   public  String encriptar(String texto) {
@@ -58,8 +57,7 @@ public class AES extends Criptografia{
   /***
    * Método desencriptar
    * @param texto
-   * @return String: Devuelve el mensaje desencriptado como una cadena String mediante la técnica AES
-   * @throws Exception 
+   * @return String: Devuelve el mensaje desencriptado como una cadena String mediante la técnica AES 
    */
   @Override
   public  String desencriptar(String texto) {
@@ -88,11 +86,25 @@ public class AES extends Criptografia{
      return verificarTextoEntrada(codigo);
   }
   
+  /***
+   * Método generarKy
+   * Se encarga de crear la instancia de la clave para el cifrado de tipo AES
+   * @throws java.lang.Exception
+   * @param --
+   * @return KayGenerator: Devuelve la instancia como un objeto de tipo KayGenerator
+   */
   public KeyGenerator generarKey() throws Exception {
     KeyGenerator clave = KeyGenerator.getInstance("AES");
     return clave;
   }
   
+  /***
+   * Método generarCipher
+   * Se encarga de crear la instancia del cifrado de tipo AES
+    * @throws java.lang.Exception
+   * @param --
+   * @return Cipher: Devuelve la instancia como un objeto de tipo KayGenerator
+   */
   public Cipher generarCipher() throws Exception {
      Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
      return cipher;

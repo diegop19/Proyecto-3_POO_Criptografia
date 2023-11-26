@@ -55,7 +55,7 @@ public class MensajeInverso extends Criptografia{
   }
   
   /***
-   * Método encriptar
+   * Método invertirPalabra
    * Se encarga de invertir la palabra que recibe. Esta función es llamada por las funciones encriptar y desencriptar
    * @param palabra
    * @return String: Devuelve la palabra invertida como una cadena de string

@@ -26,7 +26,7 @@ public class RSA extends Criptografia{
    * Método encriptar
    * Se encarga de encriptar el mensaje que recibe mediante la técnica RSA
    * @param texto
-   * @return String: Devuelve valores numéricos como una cadena de String
+   * @return String: Devuelve el mensaje encriptado como una cadena String
    */
   @Override
   public  String encriptar(String texto){
@@ -54,6 +54,12 @@ public class RSA extends Criptografia{
     return mensajeCifrado.toString();
   }
   
+  /***
+   * Método desencriptar
+   * Se encarga de encriptar el mensaje que recibe mediante la técnica RSA
+   * @param texto
+   * @return String: Devuelve el mensaje desencriptado como una cadena String
+   */
   @Override
   public  String desencriptar(String texto){
     StringBuilder mensajeDescifrado = new StringBuilder();

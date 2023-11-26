@@ -40,6 +40,12 @@ public class Binario extends Criptografia{
     return mensajeCifrado.toString();
   }
   
+  /***
+   * Método desencriptar
+   * Se encarga de encriptar el mensaje que recibe mediante la técnica binaria
+   * @param texto
+   * @return String: Devuelve el mensaje desencriptado como una cadena string
+   */
   @Override
   public  String desencriptar(String texto){
     String[] codigo = texto.split(" ");
