@@ -4,13 +4,17 @@ import modelo.Criptografia;
 
 /**
  * Class Cifrado Vigenere
- * @authors Diego Araya & Raul Alfaro
+ * @authors Diego Araya y Raul Alfaro
  */
 public class Vigenere extends Criptografia{
   private String clave;
   
   public Vigenere(){}
   
+  /***
+   * Constructor de la clase
+   * @param clave 
+   */
   public Vigenere(String clave){
     this.clave = clave;
   }    
@@ -129,6 +133,10 @@ public class Vigenere extends Criptografia{
       return mensajeCifrado.toString();
   }
   
+  /***
+   * Método getClave()
+   * @return String: Devuelve la clave guardada en la variable clave
+   */
   public String getClave() {
     return clave;
   }

@@ -33,6 +33,7 @@ public class CorreoForm extends javax.swing.JFrame {
         btEnviar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CorreoForm");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semilight", 0, 16)); // NOI18N
         jLabel1.setText("Enviar Correo");
@@ -75,6 +76,8 @@ public class CorreoForm extends javax.swing.JFrame {
                 .addComponent(btEnviar)
                 .addGap(17, 17, 17))
         );
+
+        getAccessibleContext().setAccessibleDescription("Interfaz de usuario ");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

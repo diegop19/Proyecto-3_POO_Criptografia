@@ -16,7 +16,7 @@ import javax.crypto.NoSuchPaddingException;
 
 /**
  * Class AES
- * @authors Diego Araya & Raul Alfaro
+ * @authors Diego Araya y Raul Alfaro
  */
 public class AES extends Criptografia{ 
   private SecretKey claveSecreta;
@@ -76,21 +76,30 @@ public class AES extends Criptografia{
     return mensajeDescifrado.toString();
   }
   
+  /***
+   * Método verificarTextoEntrada(String texto)
+   * @param texto
+   * @return Boolean: Devuelve true si la entrada a encriptar es válida, de lo contrario un false
+   */
   @Override
   public  boolean verificarTextoEntrada(String texto){
     return verificador.verificarASCII(texto);
   }
   
+  /***
+   * Método verificarCodigoEntrada(String codigo)
+   * @param codigo
+   * @return Boolean: Devuelve true si la entrada a desencriptar es válida, de lo contrario un false
+   */
   @Override
   public boolean verificarCodigoEntrada(String codigo){
      return verificarTextoEntrada(codigo);
   }
   
   /***
-   * Método generarKy
+   * Método generarKey()
    * Se encarga de crear la instancia de la clave para el cifrado de tipo AES
    * @throws java.lang.Exception
-   * @param --
    * @return KayGenerator: Devuelve la instancia como un objeto de tipo KayGenerator
    */
   public KeyGenerator generarKey() throws Exception {
@@ -99,10 +108,9 @@ public class AES extends Criptografia{
   }
   
   /***
-   * Método generarCipher
+   * Método generarCipher()
    * Se encarga de crear la instancia del cifrado de tipo AES
-    * @throws java.lang.Exception
-   * @param --
+   * @throws java.lang.Exception
    * @return Cipher: Devuelve la instancia como un objeto de tipo KayGenerator
    */
   public Cipher generarCipher() throws Exception {
@@ -110,6 +118,10 @@ public class AES extends Criptografia{
      return cipher;
   }
   
+  /***
+   * Método getClaveSecreta()
+   * @return SecreyKey: Devuelve la clave guardada en la variable claveSecreta
+   */
   public SecretKey getClaveSecreta() {
     return claveSecreta;
   }

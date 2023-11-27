@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 /**
  * Class ControladorCorreo
- * @authors Diego Araya & Raul Alfaro
+ * @author Diego Araya y Raul Alfaro
  */
 public class ControladorCorreo implements ActionListener{
   public CorreoForm vista;
@@ -17,8 +17,8 @@ public class ControladorCorreo implements ActionListener{
   
   /**
    * Constructor de el ControladorCorreo
-   * @param pVista 
-     *@param pMensaje  
+   * @param pVista vista del correo
+     *@param pMensaje Mensaje del correo
    */
   public ControladorCorreo(CorreoForm pVista,String pMensaje){
     this.vista = pVista;
@@ -28,7 +28,7 @@ public class ControladorCorreo implements ActionListener{
   
   /**
    * Metodo actionPerformed de la clase AcionListener
-   * @param e 
+   * @param e Parámetro de instancia de ActionEvent
    */
   @Override
   public void actionPerformed(ActionEvent e) {

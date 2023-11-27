@@ -15,7 +15,7 @@ import javax.crypto.NoSuchPaddingException;
 
 /**
  * Class RSA
- * @authors Diego Araya & Raul Alfaro
+ * @authors Diego Araya y Raul Alfaro
  */
 
 public class RSA extends Criptografia{
@@ -77,20 +77,38 @@ public class RSA extends Criptografia{
     }
   }
   
+  /***
+   * Método verificarTextoEntrada(String texto)
+   * @param texto
+   * @return Boolean: Devuelve true si la entrada a encriptar es válida, de lo contrario un false
+   */
   @Override
   public  boolean verificarTextoEntrada(String texto){
     return verificador.verificarASCII(texto);
   } 
   
+  /***
+   * Método verificarTextoEntrada(String codigo)
+   * @param codigo
+   * @return Boolean: Devuelve true si la entrada a desencriptar es válida, de lo contrario un false
+   */
   @Override
   public boolean verificarCodigoEntrada(String codigo){
      return verificarTextoEntrada(codigo);
   }
   
+  /***
+   * Método getClave1()
+   * @return PublicKey: Devuelve la clave guardada en la variable claveN
+   */
   public PublicKey getClave1(){
     return claveN;
   }
   
+  /***
+   * Método getClave2()
+   * @return PrivateKey: Devuelve la clave guardada en la variable claveD
+   */
   public PrivateKey getClave2(){
     return claveD;
   }

@@ -4,7 +4,7 @@ import modelo.Criptografia;
 
 /**
  * Class Cesar
- * @authors Diego Araya & Raul Alfaro
+ * @authors Diego Araya y Raul Alfaro
  */
 public class Cesar extends Criptografia{
       

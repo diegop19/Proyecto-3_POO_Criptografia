@@ -4,7 +4,7 @@ import modelo.Criptografia;
 
 /**
  * Class CifradoLlave
- * @authors Diego Araya & Raul Alfaro
+ * @authors Diego Araya y Raul Alfaro
  */
 
 public class Llave extends Criptografia{
@@ -12,6 +12,10 @@ public class Llave extends Criptografia{
   
   public Llave(){}
   
+  /***
+   * Constructor de la clase
+   * @param clave 
+   */
   public Llave(String clave){
     this.clave = clave;
   }
@@ -109,6 +113,10 @@ public class Llave extends Criptografia{
       return mensajeDescifrado.toString();
   }
   
+  /***
+   * Método getClave()
+   * @return String: Devuelve la clave guardada en la variable clave
+   */
   public String getClave() {
     return clave;
   }

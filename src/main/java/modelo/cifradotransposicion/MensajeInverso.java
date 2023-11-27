@@ -4,7 +4,7 @@ import modelo.Criptografia;
 
 /**
  * Class Cifrado PalabraInversa
- * @authors Diego Araya & Raul Alfaro
+ * @authors Diego Araya y Raul Alfaro
  */
 public class MensajeInverso extends Criptografia{
   
@@ -44,11 +44,22 @@ public class MensajeInverso extends Criptografia{
     return mensajeCifrado.toString();
   }
   
+  /***
+   * Método verificarTextoEntrada(String texto)
+   * @param texto
+   * @return Boolean: Devuelve true si la entrada a encriptar es válida, de lo contrario un false
+   */
   @Override
   public  boolean verificarTextoEntrada(String texto){
     return true;
   }
   
+  
+  /***
+   * Método verificarCodigoEntrada(String codigo)
+   * @param codigo
+   * @return Boolean: Devuelve true si la entrada a desencriptar es válida, de lo contrario un false
+   */
   @Override
   public boolean verificarCodigoEntrada(String codigo){
     return true;

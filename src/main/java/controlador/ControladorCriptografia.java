@@ -17,7 +17,7 @@ import modelo.cifradotransposicion.*;
 
 /**
  * Class ControloadorCriptografia
- * @authors Diego Araya & Raul Alfaro
+ * @authors Diego Araya y Raul Alfaro
  */
 
 public class ControladorCriptografia implements ActionListener{
@@ -142,6 +142,11 @@ public class ControladorCriptografia implements ActionListener{
     };
   }
   
+  /***
+   * Método verificarClave()
+   * Verifica que la entrada de la clave sea correcta
+   * @return Boolean: Devuelve true si la entrada de la clave es válida, de lo contrario un false;
+   */
   public boolean verificarClave(){
     if (vista.verificarClave()){
       return true;
@@ -152,6 +157,11 @@ public class ControladorCriptografia implements ActionListener{
     }
   }
   
+  /***
+   * Método verificarClaveVigenere()
+   * Verifica que la entrada de la clave del Vigenere sea correcta
+   * @return Boolean: Devuelve true si la entrada de la clave Vigenere es válida, de lo contrario un false;
+   */
    public boolean verificarClaveVigenere(){
     Pattern patron = Pattern.compile("^\\d{2}$");
     Matcher matcher = patron.matcher(vista.txtClave.getText());
@@ -163,7 +173,12 @@ public class ControladorCriptografia implements ActionListener{
         return false;
     }
   }
-   
+  
+  /***
+   * Método verificarClaveLlave()
+   * Verifica que la entrada de la clave de Llave sea correcta
+   * @return Boolean: Devuelve true si la entrada de la clave Llave es válida, de lo contrario un false;
+   */
   public boolean verificarClaveLlave(){
     Pattern patron = Pattern.compile("^[a-zA-Z]+$");
     Matcher matcher = patron.matcher(vista.txtClave.getText());
@@ -176,7 +191,11 @@ public class ControladorCriptografia implements ActionListener{
     }
   }
   
-  
+  /***
+   * Método crearLlave()
+   * Se encarga de crear la clave de Llave como un objeto
+   * @return Objeto Llave: Devuelve la clave Llave escrita por el usuario como un nuevo objeto
+   */
   public Criptografia crearLlave(){
     if(verificarClave()){
       if (verificarClaveLlave()){
@@ -191,6 +210,11 @@ public class ControladorCriptografia implements ActionListener{
     }
   }
   
+  /***
+   * Método crearVigenere()
+   * Se encarga de crear la clave de Vigenere como un objeto
+   * @return Objeto Vigenere: Devuelve la clave Vigenere escrita por el usuario como un nuevo objeto
+   */
   public Criptografia crearVigenere(){
     if(verificarClave()){
       if (verificarClaveVigenere()){
@@ -219,10 +243,20 @@ public class ControladorCriptografia implements ActionListener{
     };
   }
   
+  /***
+   * Método verificarAlgoritmosModernos()
+   * Se encarga de verificar que los algoritmos modernos se inicializen correctamente
+   * @return Boolean: Devuelve true si los algoritmos se inicializan correctamente, de lo contrario un false
+   */
   public boolean verificarAlgoritmosModernos(){
       return verificarDES()& verificarAES()& verificarRSA();   
   }
   
+  /***
+   * Método verificarDES()
+   * Se encarga de verificar que el DES se inicialize correctamente y que la clave haya sido generada
+   * @return Boolean: Devuelve true si el DES se inicializa correctamente y que la clave haya sido generada, de lo contrario un false
+   */
   public boolean verificarDES(){
     if("DES".equals(criptografia.getClass().getSimpleName()) & "Desencriptar".equals(tipoOperacion) ){
         System.out.println("DES desencriptar");
@@ -235,6 +269,11 @@ public class ControladorCriptografia implements ActionListener{
     return true;
   }
   
+  /***
+   * Método verificarAES()
+   * Se encarga de verificar que el AES se inicialize correctamente y que la clave haya sido generada
+   * @return Boolean: Devuelve true si el AES se inicializa correctamente y que la clave haya sido generada, de lo contrario un false
+   */
   public boolean verificarAES(){
     if("AES".equals(criptografia.getClass().getSimpleName()) & "Desencriptar".equals(tipoOperacion) ){
         System.out.println("AES desencriptar");
@@ -247,6 +286,11 @@ public class ControladorCriptografia implements ActionListener{
     return true;
   }
   
+  /***
+   * Método verificarRSA()
+   * Se encarga de verificar que el RSA se inicialize correctamente y que la clave haya sido generada
+   * @return Boolean: Devuelve true si el RSA se inicializa correctamente y que la clave haya sido generada, de lo contrario un false
+   */
   public boolean verificarRSA(){
     if("RSA".equals(criptografia.getClass().getSimpleName()) & "Desencriptar".equals(tipoOperacion) ){
         System.out.println("rsa desencriptar");

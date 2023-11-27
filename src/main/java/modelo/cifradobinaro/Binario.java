@@ -5,12 +5,12 @@ import java.util.HashMap;
 
 /**
  * Class Binario
- * @authors Diego Araya & Raul Alfaro
+ * @authors Diego Araya y Raul Alfaro
  */
 public class Binario extends Criptografia{
   
   /***
-   * Método encriptar
+   * Método encriptar(String texto)
    * Se encarga de encriptar el mensaje que recibe mediante la técnica binaria
    * @param texto
    * @return String: Devuelve el mensaje encriptado como una cadena string
@@ -41,7 +41,7 @@ public class Binario extends Criptografia{
   }
   
   /***
-   * Método desencriptar
+   * Método desencriptar(String texto)
    * Se encarga de encriptar el mensaje que recibe mediante la técnica binaria
    * @param texto
    * @return String: Devuelve el mensaje desencriptado como una cadena string
@@ -70,13 +70,19 @@ public class Binario extends Criptografia{
     return mensajeDescifrado.toString();
   }
   
+  /***
+   * Método verificarCodigoEntrada(String codigo)
+   * Se encarga de verificar que la entrada del encriptado se ingrese datos validos
+   * @param codigo
+   * @return 
+   */
   @Override
   public boolean verificarCodigoEntrada(String codigo){
     return verificador.verificarBinario(codigo);
   }
   
   /***
-   * Método obtenerBinario
+   * Método obtenerBinario(char letra)
    * Se encarga de obtener el valor binario de la letra que se ingresa de acuerdo a su posición en el alfabeto
    * Esta método es llamado por la función encriptar
    * @param letra

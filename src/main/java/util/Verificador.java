@@ -3,14 +3,18 @@ import java.util.regex.Pattern;
 
 /**
  * Singleton Verificador
- * @authors Diego Araya & Raul Alfaro
+ * @authors Diego Araya y Raul Alfaro
  */
 public class Verificador {
   private static Verificador instance;
   
   private Verificador(){
   }
-  
+ 
+ /***
+  * Método getInstance()
+  * @return instance: Devuelve la instancia creada, si no la hay, genera una nueva y la devuelve
+  */
  public static Verificador getInstance() {
     if (instance == null) {
       instance = new Verificador();
@@ -23,7 +27,7 @@ public class Verificador {
      * Encargado de verificar si el texto ingresado esta compuesto unicamente
      * por el abecedario y espacios.
      * @param input
-     * @return 
+     * @return Boolean
      */
   public boolean  verificarAbecedario(String input){
     return input.matches("^[a-zA-Z ]*$"); 
@@ -33,7 +37,7 @@ public class Verificador {
    * Metodo verificarASCII()
    * Encagado de verificar si el texto se compone de caracteres validos de la tabla ASCII
    * @param input
-   * @return 
+   * @return Boolean
    */
   public boolean verificarASCII(String input){
     Pattern ascii = Pattern.compile("^[ -~]*$");
@@ -44,7 +48,7 @@ public class Verificador {
    * Metodo verificarBinario()
    * Encargado de verificar que el texto este compuesto por valores binarios, por "*" o esapcios en blanco. 
    * @param input
-   * @return 
+   * @return Boolean
    */
   public boolean verificarBinario(String input){
     String patron = "^[01* ]*$";
@@ -55,7 +59,7 @@ public class Verificador {
    * Metodo verificarNumero()
    * Encargado de verificar que texto este compuesto por numeros por "*" y espacios en blanco
    * @param input
-   * @return 
+   * @return Boolean
    */
   public boolean verificarNumeros(String input){
     String patron = "^[0-9* ]*$";

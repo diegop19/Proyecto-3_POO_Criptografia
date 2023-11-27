@@ -9,13 +9,16 @@ import org.json.*;
 
 /**
  * Class Correo
- * @authors Diego Araya & Raul Alfaro
+ * @authors Diego Araya y Raul Alfaro
  */
 public class Correo {
   private final String USUARIO = "encrpytapp@gmail.com";  //Correo electronico de la app
   private final String CLAVE = "tdlm wvli jmko rkjx";     // token de acceso 
   private Properties propiedades;
   
+  /***
+   * Constructor de la clase
+   */
   public Correo(){
     propiedades = new Properties();
   }
@@ -39,9 +42,9 @@ public class Correo {
   /**
    * Método enviarCorreo()
    * @param destinario : direccion del Correo
-     * @param mensaje
-     * @return true si se envio correctamente, false si no 
-     * @throws java.io.IOException
+   * @param mensaje
+   * @return true si se envio correctamente, false si no 
+   * @throws java.io.IOException
    */
   public boolean enviarCorreo(String destinario,String mensaje) throws IOException {
     if(!verificarCorreo(destinario)){  // Verifica que el correo sea valido. 

@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 /**
  * Class CodigoTelefonico
- * @authors Diego Araya & Raul Alfaro
+ * @authors Diego Araya y Raul Alfaro
  */
 public class CodigoTelefonico extends Criptografia {
     
@@ -95,6 +95,11 @@ public class CodigoTelefonico extends Criptografia {
     return mensajeDescifrado.toString();
   }
   
+  /***
+   * Método verificarCodigoEntrada(String codigo)
+   * @param codigo
+   * @return Boolean: Devuelve true si la entrada a desencriptar es válida, de lo contrario un false
+   */
   @Override
   public boolean verificarCodigoEntrada(String codigo){
      return verificador.verificarNumeros(codigo);

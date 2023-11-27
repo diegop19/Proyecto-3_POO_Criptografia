@@ -3,7 +3,7 @@ import util.Verificador;
 
 /**
  * Abstract Class Criptografia
- * @authors Diego Araya & Raul Alfaro
+ * @authors Diego Araya y Raul Alfaro
  */
 public abstract class Criptografia {
   protected Verificador verificador = Verificador.getInstance();  // Instancia unica de la clase Verificador. 
@@ -12,7 +12,6 @@ public abstract class Criptografia {
    * Metodos Abstractos encriptar y desencriptar
    * @param texto
    * @return String
-     * @throws java.lang.Exception
   */
   public abstract String encriptar(String texto);
   public abstract String desencriptar(String texto);

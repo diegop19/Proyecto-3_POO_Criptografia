@@ -15,7 +15,7 @@ import javax.crypto.NoSuchPaddingException;
 
 /**
  * Class DES
- * @authors Diego Araya & Raul Alfaro
+ * @authors Diego Araya y Raul Alfaro
  */
 public class DES extends Criptografia{ 
   private SecretKey claveSecreta;
@@ -50,10 +50,10 @@ public class DES extends Criptografia{
   }
   
  /***
-   * Método encriptar
-   * Se encarga de encriptar el mensaje que recibe mediante la técnica DES
+   * Método desencriptar
+   * Se encarga de desencriptar el mensaje que recibe mediante la técnica DES
    * @param texto
-   * @return String: Devuelve el mensaje encriptado como una cadena String
+   * @return String: Devuelve el mensaje desencriptado como una cadena String
    */
   @Override
   public  String desencriptar(String texto){
@@ -71,16 +71,30 @@ public class DES extends Criptografia{
     return mensajeDescifrado.toString();
   }
   
+  /***
+   * Método verificarTextoEntrada(String texto)
+   * @param texto
+   * @return Boolean: Devuelve true si la entrada a encriptar es válida, de lo contrario un false
+   */
   @Override
   public  boolean verificarTextoEntrada(String texto){
     return verificador.verificarASCII(texto);
   }
   
+  /***
+   * Método verificarCodigoEntrada(String codigo)
+   * @param codigo
+   * @return Boolean: Devuelve true si la entrada a desencriptar es válida, de lo contrario un false
+   */
   @Override
   public boolean verificarCodigoEntrada(String codigo){
      return verificarTextoEntrada(codigo);
   }
   
+  /***
+   * Método getClaveSecreta()
+   * @return SecretKey: Devuelve la clave guardada en la variable claveSecreta
+   */
   public SecretKey getClaveSecreta() {
     return claveSecreta;
   }
